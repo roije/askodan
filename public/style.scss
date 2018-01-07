@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.new-poll-container{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
