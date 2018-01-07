@@ -26,7 +26,7 @@ body{
 .poll-card-container{
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 50px;
 }
 
 #field_poll_title{
@@ -34,7 +34,7 @@ body{
 }
 
 .poll-form-component{
-    width: 50%;
+    width: 70%;
 }
 
 @media (min-width: 768px) {
