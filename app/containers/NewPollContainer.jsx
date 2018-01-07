@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+//Components
+import TitleComponent from '../components/TitleComponent.jsx';
+import PollFormComponent from '../components/PollFormComponent.jsx';
+
 class NewPollContainer extends Component{
     constructor(props) {
         super(props)
@@ -9,7 +13,8 @@ class NewPollContainer extends Component{
     render() {
         return(
             <div className="new-poll-container">
-                <h1>áskoðan</h1>
+                <TitleComponent/>
+                <PollFormComponent/>
             </div>
         )
     }

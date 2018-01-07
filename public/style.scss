@@ -4,6 +4,13 @@
     padding: 0px;
 }
 
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+  
 body{
     height: 100vh;
     background-color: #f1f1f1;
@@ -11,6 +18,37 @@ body{
 
 .new-poll-container{
     display: flex;
-  align-items: center;
-  justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poll-card-container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+#field_poll_title{
+    font-size: 30px;
+}
+
+.poll-form-component{
+    width: 50%;
+}
+
+@media (min-width: 768px) {
+    .container {
+    width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+    width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+    width: 1170px;
+    }
 }
