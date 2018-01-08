@@ -19,11 +19,13 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx$/,
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 include: APP_DIR,
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
                 }
             },
             {

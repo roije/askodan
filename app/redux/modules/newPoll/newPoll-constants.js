@@ -1,0 +1,2 @@
+export const UPDATE_TITLE = "UPDATE_TITLE";
+export const UPDATE_POLL_OPTION = "UPDATE_POLL_OPTION";

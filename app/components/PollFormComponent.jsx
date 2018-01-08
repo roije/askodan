@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+import NewPollOptionFieldComponent from './NewPollOptionFieldComponent.jsx'
+
 class PollFormComponent extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +14,14 @@ class PollFormComponent extends Component {
         this.props.updateTitle(e.target.value);
     }
 
+    
     render() {
+        let updatePollOption = this.props.updatePollOption;
+        
+        let pollOptions = this.props.pollOptions.map(function(option, index){
+            return <NewPollOptionFieldComponent updatePollOption={updatePollOption} number={option.number} value={option.value} key={ index } />;
+        })
+
         return(
             <div className="poll-form-component">
                 <div className="card">
@@ -23,24 +32,7 @@ class PollFormComponent extends Component {
                                 <label for="field_poll_title">Spurningur</label>
                             </div>
                         </div>
-                        <div className="poll-form-row">
-                            <div className="input-field">
-                                <input id="poll-option-1" type="text" />
-                                <label for="poll-option-1">1. Svarmøguleiki</label>
-                            </div>
-                        </div>
-                        <div className="poll-form-row">
-                            <div className="input-field">
-                                <input id="poll-option-1" type="text" />
-                                <label for="poll-option-1">1. Svarmøguleiki</label>
-                            </div>
-                        </div>
-                        <div className="poll-form-row">
-                            <div className="input-field">
-                                <input id="poll-option-1" type="text" />
-                                <label for="poll-option-1">1. Svarmøguleiki</label>
-                            </div>
-                        </div>
+                        {pollOptions}
                     </div>
                 </div>
             </div>

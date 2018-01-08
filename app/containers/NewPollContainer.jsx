@@ -9,7 +9,7 @@ import PollFormComponent from '../components/PollFormComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle } from '../../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, updatePollOption } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -18,12 +18,15 @@ class NewPollContainer extends Component{
     }
 
     render() {
+        console.log(this.props.pollOptions)
         return(
             <div className="new-poll-container">
                 <TitleComponent/>
                 <PollFormComponent
                     updateTitle={this.props.updateTitle}
                     title={this.props.title}
+                    pollOptions={this.props.pollOptions}
+                    updatePollOption={this.props.updatePollOption}
                 />
             </div>
         )
@@ -34,13 +37,17 @@ const mapDispatchToProps = dispatch => {
     return {
         updateTitle: (value) => {
             dispatch(updateTitle(value))
+        },
+        updatePollOption: (id, value) => {
+            dispatch(updatePollOption(id,value))
         }
     }
 }
 
 const mapStateToProps = state => {
     return {
-        title: state.newPollReducer.title
+        title: state.newPollReducer.title,
+        pollOptions: state.newPollReducer.pollOptions
     }
 }
 

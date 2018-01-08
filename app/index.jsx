@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 //Redux
-import store from '../redux/store'
+import store from './redux/store'
 import { Provider } from 'react-redux'
 
 import NewPollContainer from './containers/NewPollContainer.jsx';
