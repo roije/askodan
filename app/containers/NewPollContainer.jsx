@@ -9,7 +9,7 @@ import PollFormComponent from '../components/PollFormComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle, updatePollOption } from '../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, updatePollOption, lastFieldFocused } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -18,7 +18,6 @@ class NewPollContainer extends Component{
     }
 
     render() {
-        console.log(this.props.pollOptions)
         return(
             <div className="new-poll-container">
                 <TitleComponent/>
@@ -27,6 +26,7 @@ class NewPollContainer extends Component{
                     title={this.props.title}
                     pollOptions={this.props.pollOptions}
                     updatePollOption={this.props.updatePollOption}
+                    lastFieldFocused={this.props.lastFieldFocused}
                 />
             </div>
         )
@@ -40,6 +40,9 @@ const mapDispatchToProps = dispatch => {
         },
         updatePollOption: (id, value) => {
             dispatch(updatePollOption(id,value))
+        },
+        lastFieldFocused: (fieldNumber) => {
+            dispatch(lastFieldFocused(fieldNumber))
         }
     }
 }

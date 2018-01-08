@@ -17,9 +17,10 @@ class PollFormComponent extends Component {
     
     render() {
         let updatePollOption = this.props.updatePollOption;
+        let lastFieldFocused = this.props.lastFieldFocused;
         
         let pollOptions = this.props.pollOptions.map(function(option, index){
-            return <NewPollOptionFieldComponent updatePollOption={updatePollOption} number={option.number} value={option.value} key={ index } />;
+            return <NewPollOptionFieldComponent updatePollOption={updatePollOption} lastFieldFocused={lastFieldFocused} number={option.number} value={option.value} last={option.last} key={ index } />;
         })
 
         return(
