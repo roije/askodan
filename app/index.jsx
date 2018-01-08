@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
+//Redux
+import store from '../redux/store'
+import { Provider } from 'react-redux'
+
 import NewPollContainer from './containers/NewPollContainer.jsx';
 
 //Styles
@@ -12,4 +16,7 @@ class App extends Component{
     }
 }
 
-render(<App />, document.getElementById('app'));
+render(<Provider store={store}>
+    <App />
+</Provider>
+, document.getElementById('app'));

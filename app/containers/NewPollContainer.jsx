@@ -5,6 +5,13 @@ import { render } from 'react-dom';
 import TitleComponent from '../components/TitleComponent.jsx';
 import PollFormComponent from '../components/PollFormComponent.jsx';
 
+//Redux
+import { connect } from 'react-redux'
+
+//Redux actions
+import { updateTitle } from '../../redux/modules/newPoll/newPoll-actions';
+
+
 class NewPollContainer extends Component{
     constructor(props) {
         super(props)
@@ -14,10 +21,30 @@ class NewPollContainer extends Component{
         return(
             <div className="new-poll-container">
                 <TitleComponent/>
-                <PollFormComponent/>
+                <PollFormComponent
+                    updateTitle={this.props.updateTitle}
+                    title={this.props.title}
+                />
             </div>
         )
     }
 }
 
-export default NewPollContainer;
+const mapDispatchToProps = dispatch => {
+    return {
+        updateTitle: (value) => {
+            dispatch(updateTitle(value))
+        }
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        title: state.newPollReducer.title
+    }
+}
+
+export default NewPollContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NewPollContainer)
