@@ -5,7 +5,7 @@ import { RESET_LAST_OPTION } from './newPoll-constants';
 import { SAVE_POLL_STARTED } from './newPoll-constants';
 import { SAVE_POLL_IN_PROGRESS } from './newPoll-constants';
 import { SAVE_POLL_DONE } from './newPoll-constants';
-
+import { REMOVE_FIELD } from './newPoll-constants';
 
 const initialState = {
     title : "",
@@ -35,6 +35,18 @@ export default (state = initialState, action) => {
             return { 
                 ...state,
                 pollOptions: [...state.pollOptions, { number, value : "", last : true}]
+            }
+            /**
+             * DELETE_ITEM: (state, action) => ({
+                ...state,
+                items: state.items.filter(item => item !== action.payload),
+                lastUpdated: Date.now() 
+                })
+             */
+        case REMOVE_FIELD: 
+            return {
+                ...state,
+                pollOptions: state.pollOptions.filter(pollOption => pollOption.number !== action.fieldNumber)
             }
         case RESET_LAST_OPTION: 
             return {

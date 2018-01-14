@@ -3,6 +3,7 @@ import { UPDATE_POLL_OPTION } from './newPoll-constants';
 import { ADD_POLL_OPTION } from './newPoll-constants';
 import { RESET_LAST_OPTION } from './newPoll-constants';
 import { SAVE_POLL_STARTED, SAVE_POLL_IN_PROGRESS, SAVE_POLL_DONE } from './newPoll-constants';
+import { REMOVE_FIELD } from './newPoll-constants';
 
 export const updateTitle = (value) => {
     return {
@@ -49,6 +50,13 @@ export const lastFieldFocused = (fieldNumber) => {
     return function (dispatch) { 
         dispatch(addPollOption())
         dispatch(resetLast(fieldNumber))
+    }
+}
+
+export const removeField = (fieldNumber) => {
+    return {
+        type: REMOVE_FIELD,
+        fieldNumber
     }
 }
 

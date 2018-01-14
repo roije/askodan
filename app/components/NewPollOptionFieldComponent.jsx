@@ -27,16 +27,23 @@ class NewPollOptionFieldComponent extends Component {
 
     onRemove(event) {
         var id = Number(event.target.parentNode.id);
-        console.log('Remove', id);
+        this.props.removeField(id)
     }
 
     render() {
+
+        //Condinationally render the remove button. Only if the poll option isn't the first or second field.
+        let removeButton = null;
+        if(this.props.number > 2) {
+            removeButton = <p onClick={this.onRemove}>Remove</p>
+        }
+
         return(
             <div className="poll-form-row">
                 <div className="input-field" id={this.props.number} >
                     <input type="text" value={this.props.value} onChange={this.onPollOptionChange} data-last={this.props.last} onFocus={this.onFieldFocus}/>
                     <label for={this.props.number}>{this.props.number}. Svarmøguleiki</label>
-                    <p onClick={this.onRemove}>Remove</p>
+                    {removeButton}
                 </div>
             </div>
         )
