@@ -9,7 +9,7 @@ import PollFormComponent from '../components/PollFormComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle, updatePollOption, lastFieldFocused } from '../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, updatePollOption, lastFieldFocused, savePoll } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -27,6 +27,7 @@ class NewPollContainer extends Component{
                     pollOptions={this.props.pollOptions}
                     updatePollOption={this.props.updatePollOption}
                     lastFieldFocused={this.props.lastFieldFocused}
+                    savePoll={this.props.savePoll}
                 />
             </div>
         )
@@ -43,6 +44,9 @@ const mapDispatchToProps = dispatch => {
         },
         lastFieldFocused: (fieldNumber) => {
             dispatch(lastFieldFocused(fieldNumber))
+        },
+        savePoll: () => {
+            dispatch(savePoll())
         }
     }
 }

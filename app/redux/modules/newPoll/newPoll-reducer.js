@@ -2,13 +2,18 @@ import { UPDATE_TITLE } from './newPoll-constants';
 import { UPDATE_POLL_OPTION } from './newPoll-constants';
 import { ADD_POLL_OPTION } from './newPoll-constants';
 import { RESET_LAST_OPTION } from './newPoll-constants';
+import { SAVE_POLL_STARTED } from './newPoll-constants';
+import { SAVE_POLL_IN_PROGRESS } from './newPoll-constants';
+import { SAVE_POLL_DONE } from './newPoll-constants';
+
 
 const initialState = {
     title : "",
     pollOptions: [
         { number: 1, value: "", last: false},
         { number: 2, value: "", last: true}
-    ]
+    ],
+    saving: false
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +45,16 @@ export default (state = initialState, action) => {
                     // otherwise return original option
                     option
                 ) 
+            }
+        case SAVE_POLL_STARTED: 
+            return {
+                ...state,
+                saving: true
+            }
+        case SAVE_POLL_DONE: 
+            return {
+                ...state,
+                saving: false
             }
         default:
             return state;

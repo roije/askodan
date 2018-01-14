@@ -7,6 +7,7 @@ class NewPollOptionFieldComponent extends Component {
 
         this.onPollOptionChange = this.onPollOptionChange.bind(this);
         this.onFieldFocus = this.onFieldFocus.bind(this);
+        this.onRemove = this.onRemove.bind(this);
     }
 
     onPollOptionChange(event){
@@ -17,19 +18,25 @@ class NewPollOptionFieldComponent extends Component {
 
     onFieldFocus(event) {
         var isLast = JSON.parse(event.target.getAttribute('data-last'));
-        var id = Number(event.target.id);
+        var id = Number(event.target.parentNode.id);
         if(isLast) {
             this.props.lastFieldFocused(id);
             //console.log('Add new field')
         }
     }
 
+    onRemove(event) {
+        var id = Number(event.target.parentNode.id);
+        console.log('Remove', id);
+    }
+
     render() {
         return(
             <div className="poll-form-row">
-                <div className="input-field">
-                    <input id={this.props.number} type="text" value={this.props.value} onChange={this.onPollOptionChange} data-last={this.props.last} onFocus={this.onFieldFocus}/>
+                <div className="input-field" id={this.props.number} >
+                    <input type="text" value={this.props.value} onChange={this.onPollOptionChange} data-last={this.props.last} onFocus={this.onFieldFocus}/>
                     <label for={this.props.number}>{this.props.number}. Svarmøguleiki</label>
+                    <p onClick={this.onRemove}>Remove</p>
                 </div>
             </div>
         )

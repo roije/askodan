@@ -14,6 +14,8 @@
 body{
     height: 100vh;
     background-color: #f1f1f1;
+    color: #373D3F;
+    font-family: 'Raleway', sans-serif;
 }
 
 .new-poll-container{
@@ -34,7 +36,36 @@ body{
 }
 
 .poll-form-component{
-    width: 70%;
+    width: 60%;
+}
+
+.save-button-container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+    color: #1E8BC3 !important;
+}
+/* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #1E8BC3 !important;
+    box-shadow: 0 1px 0 0 #1E8BC3 !important;
+  }
+
+.options-checboxes{
+    margin-top: 20px;
+
+    input:checked + label:before {
+        border-right: 2px solid #1E8BC3; /* You need to change the colour here */
+        border-bottom: 2px solid #1E8BC3; /* And here */
+    }
+
+    label{
+        color: #373D3F;
+    }
 }
 
 @media (min-width: 768px) {

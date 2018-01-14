@@ -34,6 +34,33 @@ class PollFormComponent extends Component {
                             </div>
                         </div>
                         {pollOptions}
+                        <div className="options-container">
+                            <div className="ip-browser-check">
+                                <select class="browser-default">
+                                    <option value="1" selected>IP tvífaldan ikki loyvd</option>
+                                    <option value="2">Browser tvífaldan ikki loyvd</option>
+                                    <option value="3">Eingin avmarking</option>
+                                </select>
+                            </div>
+                            <div className="options-checboxes">
+                                <p>
+                                    <input type="checkbox" id="check1" />
+                                    <label for="check1">Fleiri svar loyvd</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="check2" />
+                                    <label for="check2">Spam fyribyrging</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" id="check3" />
+                                    <label for="check3">Privat spurnarkanning</label>
+                                </p>
+                            </div>
+                            
+                        </div>
+                        <div className="save-button-container">
+                            <button className="btn green" onClick={this.props.savePoll}>Stovna spurnarkanning</button>
+                        </div>
                     </div>
                 </div>
             </div>
