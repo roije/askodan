@@ -4,6 +4,7 @@ import { ADD_POLL_OPTION } from './newPoll-constants';
 import { RESET_LAST_OPTION } from './newPoll-constants';
 import { SAVE_POLL_STARTED, SAVE_POLL_IN_PROGRESS, SAVE_POLL_DONE } from './newPoll-constants';
 import { REMOVE_FIELD } from './newPoll-constants';
+import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
 
 export const updateTitle = (value) => {
     return {
@@ -12,19 +13,18 @@ export const updateTitle = (value) => {
     }
 };
 
-export const updatePollOption = (id, value) => {
+export const updatePollOption = (index, value) => {
     return {
         type: UPDATE_POLL_OPTION,
-        id,
+        index,
         value
     }
 }
 
-const resetLast = (fieldNumber, value) => {
+const resetLast = (index, value) => {
     return {
         type: RESET_LAST_OPTION,
-        fieldNumber,
-        value
+        index,
     }
 }
 
@@ -46,19 +46,36 @@ const savePollSDone = () => {
     }
 }
 
-export const lastFieldFocused = (fieldNumber) => {
+export const lastFieldFocused = (index) => {
     return function (dispatch) { 
         dispatch(addPollOption())
-        dispatch(resetLast(fieldNumber))
+        dispatch(resetLast(index))
     }
 }
 
-export const removeField = (fieldNumber) => {
+const onRemoveField = (index) => {
     return {
         type: REMOVE_FIELD,
-        fieldNumber
+        index
     }
 }
+
+const lastFieldRemoved = () => {
+    return {
+        type: SET_LAST_FIELD_TRUE
+    }
+}
+
+export const removeField = (index, isLast) => {
+    return function (dispatch) {
+        dispatch(onRemoveField(index))
+        if(isLast) {
+            dispatch(lastFieldRemoved());
+        }
+    }
+}
+
+
 
 export const savePoll = () => {
     return (dispatch, getState) => { 

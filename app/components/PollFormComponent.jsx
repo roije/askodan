@@ -28,6 +28,7 @@ class PollFormComponent extends Component {
                     number={option.number} 
                     value={option.value} 
                     last={option.last} 
+                    index={index}
                     key={ index } />;
         })
 

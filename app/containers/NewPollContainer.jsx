@@ -40,17 +40,17 @@ const mapDispatchToProps = dispatch => {
         updateTitle: (value) => {
             dispatch(updateTitle(value))
         },
-        updatePollOption: (id, value) => {
-            dispatch(updatePollOption(id,value))
+        updatePollOption: (index, value) => {
+            dispatch(updatePollOption(index ,value))
         },
-        lastFieldFocused: (fieldNumber) => {
-            dispatch(lastFieldFocused(fieldNumber))
+        lastFieldFocused: (index) => {
+            dispatch(lastFieldFocused(index))
         },
         savePoll: () => {
             dispatch(savePoll())
         },
-        removeField: (fieldNumber) => {
-            dispatch(removeField(fieldNumber))
+        removeField: (index, isLast) => {
+            dispatch(removeField(index, isLast))
         }
     }
 }

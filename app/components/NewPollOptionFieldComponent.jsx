@@ -4,45 +4,48 @@ import { render } from 'react-dom';
 class NewPollOptionFieldComponent extends Component {
     constructor(props) {
         super(props)
-
+        this.field = props.index + 1;
         this.onPollOptionChange = this.onPollOptionChange.bind(this);
         this.onFieldFocus = this.onFieldFocus.bind(this);
         this.onRemove = this.onRemove.bind(this);
     }
 
     onPollOptionChange(event){
-        let id = Number(event.target.id);
+        let index = Number(event.target.parentNode.id);
         let value = event.target.value;
-        this.props.updatePollOption(id, value)
+
+        this.props.updatePollOption(index, value)
     }
 
     onFieldFocus(event) {
-        var isLast = JSON.parse(event.target.getAttribute('data-last'));
-        var id = Number(event.target.parentNode.id);
+        var isLast = JSON.parse(event.target.parentNode.getAttribute('data-last'));
+        var index = Number(event.target.parentNode.id);
         if(isLast) {
-            this.props.lastFieldFocused(id);
+            this.props.lastFieldFocused(index);
             //console.log('Add new field')
         }
     }
 
     onRemove(event) {
-        var id = Number(event.target.parentNode.id);
-        this.props.removeField(id)
+        var index = Number(event.target.parentNode.id);
+        var isLast = JSON.parse(event.target.parentNode.getAttribute('data-last'));
+        console.log(isLast)
+        this.props.removeField(index, isLast)
     }
 
     render() {
 
         //Condinationally render the remove button. Only if the poll option isn't the first or second field.
         let removeButton = null;
-        if(this.props.number > 2) {
+        if(this.props.index > 1) {
             removeButton = <p onClick={this.onRemove}>Remove</p>
         }
-
+        //Minst til at fiksa feilin vid delete. Bruka index ístadin fyri fieldnumber
         return(
             <div className="poll-form-row">
-                <div className="input-field" id={this.props.number} >
-                    <input type="text" value={this.props.value} onChange={this.onPollOptionChange} data-last={this.props.last} onFocus={this.onFieldFocus}/>
-                    <label for={this.props.number}>{this.props.number}. Svarmøguleiki</label>
+                <div className="input-field" id={this.props.index} data-last={this.props.last} >
+                    <input type="text" value={this.props.value} onChange={this.onPollOptionChange} onFocus={this.onFieldFocus}/>
+                    <label for={this.props.index}>{this.field}. Svarmøguleiki</label>
                     {removeButton}
                 </div>
             </div>
