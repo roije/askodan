@@ -44,7 +44,9 @@ body{
     display: flex;
     justify-content: flex-end;
 }
-
+.input-field{
+    position: relative;
+}
  /* label focus color */
  .input-field input[type=text]:focus + label {
     color: #1E8BC3 !important;
@@ -66,6 +68,13 @@ body{
     label{
         color: #373D3F;
     }
+}
+
+.remove-field-div{
+    font-size: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 @media (min-width: 768px) {

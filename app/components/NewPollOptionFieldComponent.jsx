@@ -28,6 +28,7 @@ class NewPollOptionFieldComponent extends Component {
 
     onRemove(event) {
         var index = Number(event.target.parentNode.id);
+        console.log(index);
         var isLast = JSON.parse(event.target.parentNode.getAttribute('data-last'));
         console.log(isLast)
         this.props.removeField(index, isLast)
@@ -38,7 +39,10 @@ class NewPollOptionFieldComponent extends Component {
         //Condinationally render the remove button. Only if the poll option isn't the first or second field.
         let removeButton = null;
         if(this.props.index > 1) {
-            removeButton = <p onClick={this.onRemove}>Remove</p>
+            removeButton = 
+            <p className="remove-field-div"  onClick={this.onRemove}>
+                X
+            </p>
         }
         //Minst til at fiksa feilin vid delete. Bruka index ístadin fyri fieldnumber
         return(

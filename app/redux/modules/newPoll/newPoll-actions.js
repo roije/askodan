@@ -67,6 +67,7 @@ const lastFieldRemoved = () => {
 }
 
 export const removeField = (index, isLast) => {
+    console.log('INDEX', index)
     return function (dispatch) {
         dispatch(onRemoveField(index))
         if(isLast) {
