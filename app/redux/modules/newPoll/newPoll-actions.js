@@ -84,7 +84,7 @@ export const savePoll = () => {
         var newPollReducer =  getState().newPollReducer
         var pollOptions = newPollReducer.pollOptions;
         var title = newPollReducer.title;
-        fetch('http://localhost/api_askodan/polls/api-save-poll.php', {
+        fetch('http://localhost:3000/api/poll', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

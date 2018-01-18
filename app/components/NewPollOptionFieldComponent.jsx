@@ -41,7 +41,7 @@ class NewPollOptionFieldComponent extends Component {
         if(this.props.index > 1) {
             removeButton = 
             <p className="remove-field-div"  onClick={this.onRemove}>
-                X
+                <i class="fa fa-times" aria-hidden="true"></i>
             </p>
         }
         //Minst til at fiksa feilin vid delete. Bruka index ístadin fyri fieldnumber
