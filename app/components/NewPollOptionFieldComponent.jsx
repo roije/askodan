@@ -28,6 +28,7 @@ class NewPollOptionFieldComponent extends Component {
 
     onRemove(event) {
         var index = Number(event.target.parentNode.id);
+        console.log(event.target.parentNode)
         console.log(index);
         var isLast = JSON.parse(event.target.parentNode.getAttribute('data-last'));
         console.log(isLast)
@@ -40,7 +41,7 @@ class NewPollOptionFieldComponent extends Component {
         let removeButton = null;
         if(this.props.index > 1) {
             removeButton = 
-            <p className="remove-field-div"  onClick={this.onRemove}>
+            <p className="remove-field-div"  id={this.props.index}  onClick={this.onRemove}>
                 <i class="fa fa-times" aria-hidden="true"></i>
             </p>
         }
