@@ -25,7 +25,6 @@ class PollFormComponent extends Component {
                     updatePollOption={updatePollOption} 
                     lastFieldFocused={lastFieldFocused} 
                     removeField={removeField}
-                    number={option.number} 
                     value={option.value} 
                     last={option.last} 
                     index={index}

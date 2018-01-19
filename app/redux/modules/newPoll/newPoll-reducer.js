@@ -7,6 +7,8 @@ import { SAVE_POLL_IN_PROGRESS } from './newPoll-constants';
 import { SAVE_POLL_DONE } from './newPoll-constants';
 import { REMOVE_FIELD } from './newPoll-constants';
 import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
+import { RESET_LAST } from './newPoll-constants';
+import { SET_LAST_TRUE } from './newPoll-constants';
 
 const initialState = {
     title : "",
@@ -40,15 +42,16 @@ export default (state = initialState, action) => {
                     ...state.pollOptions.slice(action.index + 1)
                 ],
             }
-        case RESET_LAST_OPTION: 
+        /* Sets every last field in options to be false */ 
+        case RESET_LAST: 
             return {
                 ...state,
-                pollOptions: state.pollOptions.map((option, index) => 
-                index === action.index ? { ...option, last: false } : option
-                ) 
+                pollOptions: state.pollOptions.map((option) => {
+                    return { ...option, last: false }
+                })
             }
-        case SET_LAST_FIELD_TRUE:
-        console.log('lastfield removed')
+        /* Sets last option field to true*/
+        case SET_LAST_TRUE:
             return {
                 ...state,
                 pollOptions: state.pollOptions.map((option, index) => 

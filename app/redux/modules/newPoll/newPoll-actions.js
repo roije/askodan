@@ -5,6 +5,11 @@ import { RESET_LAST_OPTION } from './newPoll-constants';
 import { SAVE_POLL_STARTED, SAVE_POLL_IN_PROGRESS, SAVE_POLL_DONE } from './newPoll-constants';
 import { REMOVE_FIELD } from './newPoll-constants';
 import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
+import { RESET_LAST } from './newPoll-constants';
+import { SET_LAST_TRUE } from './newPoll-constants';
+
+
+/////////////////////UPDATE POLL TITLE////////////////////////
 
 export const updateTitle = (value) => {
     return {
@@ -12,6 +17,10 @@ export const updateTitle = (value) => {
         value
     }
 };
+
+//////////////////////////////////////////////////////////////
+
+//////////////////UPDATE POLL OPTION////////////////////////////
 
 export const updatePollOption = (index, value) => {
     return {
@@ -21,18 +30,65 @@ export const updatePollOption = (index, value) => {
     }
 }
 
-const resetLast = (index, value) => {
+//////////////////////////////////////////////////////////////////
+
+///////////////////ADD NEW POLL OPTION WHEN LAST IS FOCUSED/////////////
+
+const resetLast = () => {
     return {
-        type: RESET_LAST_OPTION,
-        index,
+        type: RESET_LAST
     }
 }
+
 
 const addPollOption = () => {
     return {
         type: ADD_POLL_OPTION
     }
 }
+
+export const lastFieldFocused = (index) => {
+    return function (dispatch) { 
+        //Set all the options to have last as false
+        dispatch(resetLast())
+        //Add the new field. Last is set to true when object is created.
+        dispatch(addPollOption())
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+///////////////////////////REMOVE POLL OPTION///////////////////////////
+
+
+const onRemoveField = (index) => {
+    return {
+        type: REMOVE_FIELD,
+        index
+    }
+}
+
+const setLastTrue = () => {
+    return {
+        type: SET_LAST_TRUE
+    }
+}
+
+export const removeField = (index, isLast) => {
+    return function (dispatch) {
+        //Remove the field
+        dispatch(onRemoveField(index))
+        //Then set all the options to have last as false
+        dispatch(resetLast());
+        //Set the last option in array to have last as true
+        dispatch(setLastTrue());
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////SAVE POLL/////////////////////////////////////
 
 const savePollStart = () => {
     return {
@@ -45,38 +101,6 @@ const savePollSDone = () => {
         type: SAVE_POLL_DONE
     }
 }
-
-export const lastFieldFocused = (index) => {
-    return function (dispatch) { 
-        dispatch(addPollOption())
-        dispatch(resetLast(index))
-    }
-}
-
-const onRemoveField = (index) => {
-    return {
-        type: REMOVE_FIELD,
-        index
-    }
-}
-
-const lastFieldRemoved = () => {
-    return {
-        type: SET_LAST_FIELD_TRUE
-    }
-}
-
-export const removeField = (index, isLast) => {
-    console.log('INDEX', index)
-    return function (dispatch) {
-        dispatch(onRemoveField(index))
-        if(isLast) {
-            dispatch(lastFieldRemoved());
-        }
-    }
-}
-
-
 
 export const savePoll = () => {
     return (dispatch, getState) => { 
@@ -102,3 +126,4 @@ export const savePoll = () => {
           })
     }
 }
+////////////////////////////////////////////////////////////////////////
