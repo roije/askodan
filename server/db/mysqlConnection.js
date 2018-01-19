@@ -16,15 +16,13 @@ console.log('Connection %d released', connection.threadId);
 });
 
 module.exports = {
-    query: (sqlQuery, callback) => {
+    query: (sqlQuery, values, callback) => {
         pool.getConnection((err, connection)  => {
             if(err){
-                connection.release()
                 return callback({"errorMessage" : "Connection error", "error" : err})
             }
-            connection.query(sqlQuery, (error, results, fields) => {
+            connection.query(sqlQuery, values, (error, results, fields) => {
                 if(error) {
-                    console.log(error)
                     connection.release()
                     return callback({"errorMessage" : "Error when inserting", "error" : error})
                 }

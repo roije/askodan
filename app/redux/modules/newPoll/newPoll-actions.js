@@ -106,7 +106,7 @@ export const savePoll = () => {
     return (dispatch, getState) => { 
         dispatch(savePollStart())
         var newPollReducer =  getState().newPollReducer
-        var pollOptions = newPollReducer.pollOptions;
+        var pollOptions = newPollReducer.pollOptions.slice(0, -1);
         var title = newPollReducer.title;
         fetch('http://localhost:3000/api/poll', {
             method: 'post',

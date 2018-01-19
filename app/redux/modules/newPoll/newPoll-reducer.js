@@ -16,6 +16,16 @@ const initialState = {
         { value: "", last: false},
         { value: "", last: true}
     ],
+    pollConfigs: {
+        "ipBrowserConfigs" : [
+            { "text" : "Browser tvífaldan ikki loyvd", "value" : 1, "selected" : true},
+            { "text" : "IP tvífaldan ikki loyvd", "value" : 2, "selected" : false},
+            { "text" : "Eingin avmarking", "value" : 3, "selected" : false},
+        ],
+        "generalVotingConfigs ": [
+
+        ]
+    },
     saving: false
 };
 
