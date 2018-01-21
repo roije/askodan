@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import NewPollOptionFieldComponent from './NewPollOptionFieldComponent.jsx'
+import PollOptionSelect from './PollOptionSelect.jsx';
 
 class PollFormComponent extends Component {
     constructor(props) {
         super(props)
-
         this.onTitleChange = this.onTitleChange.bind(this);
     }
 
@@ -19,6 +19,7 @@ class PollFormComponent extends Component {
         let updatePollOption = this.props.updatePollOption;
         let lastFieldFocused = this.props.lastFieldFocused;
         let removeField = this.props.removeField;
+        let updateIpBrowserConfig = this.props.updateIpBrowserConfig;
         
         let pollOptions = this.props.pollOptions.map(function(option, index){
             return <NewPollOptionFieldComponent 
@@ -43,6 +44,12 @@ class PollFormComponent extends Component {
                         </div>
                         {pollOptions}
                         <div className="options-container">
+                            <PollOptionSelect 
+                                    options={this.props.pollConfigs.ipBrowserConfigs} 
+                                    ipBrowserConfigSelected={this.props.ipBrowserConfigSelected}
+                                    updateBrowserIpConfig={updateIpBrowserConfig}
+                                    updateConfig={this.props.updateConfig}
+                            /> 
                             <div className="ip-browser-check">
                                 <select class="browser-default">
                                     <option value="1" selected>IP tvífaldan ikki loyvd</option>

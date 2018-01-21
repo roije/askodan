@@ -9,12 +9,13 @@ import PollFormComponent from '../components/PollFormComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle, updatePollOption, lastFieldFocused, savePoll, removeField } from '../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, updatePollOption, lastFieldFocused, savePoll, removeField, updateIpBrowserConfig, updateConfig } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
     constructor(props) {
         super(props)
+
     }
 
     render() {
@@ -29,6 +30,10 @@ class NewPollContainer extends Component{
                     lastFieldFocused={this.props.lastFieldFocused}
                     savePoll={this.props.savePoll}
                     removeField={this.props.removeField}
+                    pollConfigs={this.props.pollConfigs}
+                    ipBrowserConfigSelected={this.props.ipBrowserConfigSelected}
+                    updateIpBrowserConfig={this.props.updateIpBrowserConfig}
+                    updateConfig={this.props.updateConfig}
                 />
             </div>
         )
@@ -51,6 +56,12 @@ const mapDispatchToProps = dispatch => {
         },
         removeField: (index, isLast) => {
             dispatch(removeField(index, isLast))
+        },
+        updateIpBrowserConfig: (value) => {
+            dispatch(updateIpBrowserConfig(value))
+        },
+        updateConfig: (place) => {
+            dispatch(updateConfig(place))
         }
     }
 }
@@ -58,7 +69,9 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         title: state.newPollReducer.title,
-        pollOptions: state.newPollReducer.pollOptions
+        pollOptions: state.newPollReducer.pollOptions,
+        pollConfigs: state.newPollReducer.pollConfigs,
+        ipBrowserConfigSelected: state.newPollReducer.ipBrowserConfigSelected   
     }
 }
 

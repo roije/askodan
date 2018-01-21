@@ -9,6 +9,8 @@ import { REMOVE_FIELD } from './newPoll-constants';
 import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
 import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
+import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
+
 
 const initialState = {
     title : "",
@@ -18,14 +20,15 @@ const initialState = {
     ],
     pollConfigs: {
         "ipBrowserConfigs" : [
-            { "text" : "Browser tvífaldan ikki loyvd", "value" : 1, "selected" : true},
-            { "text" : "IP tvífaldan ikki loyvd", "value" : 2, "selected" : false},
-            { "text" : "Eingin avmarking", "value" : 3, "selected" : false},
+            { "text" : "Browser tvífaldan ikki loyvd", "value" : 1},
+            { "text" : "IP tvífaldan ikki loyvd", "value" : 2},
+            { "text" : "Eingin avmarking", "value" : 3},
         ],
         "generalVotingConfigs ": [
 
         ]
     },
+    ipBrowserConfigSelected: 1,
     saving: false
 };
 
@@ -68,7 +71,8 @@ export default (state = initialState, action) => {
                 index === state.pollOptions.length - 1 ? { ...option, last: true } : option
                 ) 
             }
-
+        case UPDATE_IP_BROWSER_CONFIG:
+                return Object.assign({}, state, { ipBrowserConfigSelected : action.value});
         case SAVE_POLL_STARTED: 
             return {
                 ...state,

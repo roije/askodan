@@ -7,6 +7,7 @@ import { REMOVE_FIELD } from './newPoll-constants';
 import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
 import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
+import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
 
 
 /////////////////////UPDATE POLL TITLE////////////////////////
@@ -82,6 +83,17 @@ export const removeField = (index, isLast) => {
         dispatch(resetLast());
         //Set the last option in array to have last as true
         dispatch(setLastTrue());
+    }
+}
+
+////////////////////////////////////////////////////////////////////////
+
+/////////////////////////SET IP/BROWSER CONFIGS/////////////////////////////////
+
+export const updateConfig = (value) => {
+    return {
+        type: UPDATE_IP_BROWSER_CONFIG,
+        value
     }
 }
 
