@@ -9,7 +9,7 @@ import PollFormComponent from '../components/PollFormComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle, updatePollOption, lastFieldFocused, savePoll, removeField, updateIpBrowserConfig, updateConfig } from '../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, updatePollOption, lastFieldFocused, savePoll, removeField, updateConfig } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -57,11 +57,8 @@ const mapDispatchToProps = dispatch => {
         removeField: (index, isLast) => {
             dispatch(removeField(index, isLast))
         },
-        updateIpBrowserConfig: (value) => {
-            dispatch(updateIpBrowserConfig(value))
-        },
-        updateConfig: (place) => {
-            dispatch(updateConfig(place))
+        updateConfig: (configType, value) => {
+            dispatch(updateConfig(configType, value))
         }
     }
 }

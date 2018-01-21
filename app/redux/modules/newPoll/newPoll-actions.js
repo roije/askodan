@@ -8,6 +8,7 @@ import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
 import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
+import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
 
 
 /////////////////////UPDATE POLL TITLE////////////////////////
@@ -90,11 +91,22 @@ export const removeField = (index, isLast) => {
 
 /////////////////////////SET IP/BROWSER CONFIGS/////////////////////////////////
 
-export const updateConfig = (value) => {
-    return {
-        type: UPDATE_IP_BROWSER_CONFIG,
-        value
+export const updateConfig = (configType, value) => {
+    console.log(configType);
+    switch(configType){
+        case "ip-browser":
+        console.log('UPDATE IP BROWSER')
+            return {
+                type: UPDATE_IP_BROWSER_CONFIG,
+                value
+            }
+        case "general-config":
+            return {
+                type: GENERAL_CONFIG_CHECK_CLICKED,
+                value
+            }
     }
+
 }
 
 ////////////////////////////////////////////////////////////////////////

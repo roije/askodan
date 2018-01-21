@@ -10,6 +10,7 @@ import { SET_LAST_FIELD_TRUE } from './newPoll-constants'
 import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
+import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
 
 
 const initialState = {
@@ -24,8 +25,10 @@ const initialState = {
             { "text" : "IP tvífaldan ikki loyvd", "value" : 2},
             { "text" : "Eingin avmarking", "value" : 3},
         ],
-        "generalVotingConfigs ": [
-
+        "generalVotingConfigs": [
+            { "text" : "Fleiri svar loyvd", "checked" : false,},
+            { "text" : "Spam fyribyrging", "checked" : false},
+            { "text" : "Privat spurnarkanning", "checked" : false}, 
         ]
     },
     ipBrowserConfigSelected: 1,
@@ -73,6 +76,17 @@ export default (state = initialState, action) => {
             }
         case UPDATE_IP_BROWSER_CONFIG:
                 return Object.assign({}, state, { ipBrowserConfigSelected : action.value});
+        case GENERAL_CONFIG_CHECK_CLICKED: 
+            //https://stackoverflow.com/questions/40096036/how-to-update-a-value-of-a-nested-object-in-a-reducer
+            return { 
+                ...state, 
+                pollConfigs: {
+                    ...state.pollConfigs,
+                    generalVotingConfigs: state.pollConfigs.generalVotingConfigs.map((config, i) =>
+                    i === action.value ? {...config, checked: !config.checked} : config)
+                } 
+            } 
+            
         case SAVE_POLL_STARTED: 
             return {
                 ...state,

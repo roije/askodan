@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-class PollOptionSelect extends Component{
+class PollConfigSelectComponent extends Component{
     constructor(props) {
         super(props);
         this.onOptionChange = this.onOptionChange.bind(this);
@@ -8,7 +8,7 @@ class PollOptionSelect extends Component{
 
     onOptionChange(event) {
         let value = event.target.value;
-        this.props.updateConfig(value);
+        this.props.updateConfig("ip-browser", value);
  
     }
 
@@ -29,4 +29,4 @@ class PollOptionSelect extends Component{
     }
 }
 
-export default PollOptionSelect;
+export default PollConfigSelectComponent;
