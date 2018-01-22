@@ -26,9 +26,9 @@ const initialState = {
             { "text" : "Eingin avmarking", "value" : 3},
         ],
         "generalVotingConfigs": [
-            { "text" : "Fleiri svar loyvd", "checked" : false,},
-            { "text" : "Spam fyribyrging", "checked" : false},
-            { "text" : "Privat spurnarkanning", "checked" : false}, 
+            { "text" : "Fleiri svar loyvd", "checked" : false, "id": 1},
+            { "text" : "Spam fyribyrging", "checked" : false, "id" : 2},
+            { "text" : "Privat spurnarkanning", "checked" : false, "id" : 3}, 
         ]
     },
     ipBrowserConfigSelected: 1,

@@ -3,11 +3,34 @@ var hashids = new Hashids();
 var router = require('express').Router();
 var pollUtils = require('./poll-utils');
 var pollController = require('./poll-controller');
-
-router.post('/api/poll', (req, res) => {
-    pollController.savePoll(req.body, () => {
-            
+var db = require('../../db/mysqlConnection');
+router.post('/api/poll', (req, res) => {    
+    pollController.savePoll(req.body, (err, data) => {
+        if(err) {
+            console.log(err);
+            return;
+        }
+        console.log(data)  
     })
+})
+
+router.post('/testconnection', (req, res) => {
+    pollController.test(req.body, (err, data) => {
+        if(err) {
+            console.log(err);
+        }
+        console.log(data);
+    });
+    /*
+    db.getConnection((err, connection) => {
+        if(err) {
+            console.log(err);
+        }
+        connection.query('select * from polls', (error, results, fields) => {
+            console.log(results);
+        })
+    })
+    */
 })
 
 router.get('/hashid', (req, res) => {

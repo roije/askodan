@@ -131,6 +131,8 @@ export const savePoll = () => {
         dispatch(savePollStart())
         var newPollReducer =  getState().newPollReducer
         var pollOptions = newPollReducer.pollOptions.slice(0, -1);
+        var pollGeneralConfigs = newPollReducer.pollConfigs.generalVotingConfigs;
+        var ipBrowserConfigSelected = newPollReducer.ipBrowserConfigSelected;
         var title = newPollReducer.title;
         fetch('http://localhost:3000/api/poll', {
             method: 'post',
@@ -140,7 +142,9 @@ export const savePoll = () => {
             },
             body: JSON.stringify({
                 pollOptions,
-                title
+                title,
+                pollGeneralConfigs,
+                ipBrowserConfigSelected
             })
           }).then((response) => {
             response.json().then(function(data) {
