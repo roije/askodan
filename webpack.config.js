@@ -14,7 +14,13 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './public'
+        contentBase: './public',
+        /*
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        */
+        historyApiFallback: true
     },
     module: {
         loaders: [

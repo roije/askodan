@@ -7,6 +7,7 @@ let bodyParser = require('body-parser');
 
 const port = 3000;
 
+app.use(cors());
 app.options('*', cors())
 //Apply middleware
 app.use( bodyParser.json() );       // to support JSON-encoded bodies

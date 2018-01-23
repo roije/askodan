@@ -126,7 +126,7 @@ const savePollSDone = () => {
     }
 }
 
-export const savePoll = () => {
+export const savePoll = (callback) => {
     return (dispatch, getState) => { 
         dispatch(savePollStart())
         var newPollReducer =  getState().newPollReducer
@@ -149,7 +149,7 @@ export const savePoll = () => {
           }).then((response) => {
             response.json().then(function(data) {
                 // do something with your data
-                console.log(data)
+                callback(data);
               });
           })
     }

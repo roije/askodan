@@ -10,7 +10,9 @@ router.post('/api/poll', (req, res) => {
             console.log(err);
             return;
         }
-        console.log(data)  
+        //res.send(data);
+        console.log(data)
+        res.send(data);
     })
 })
 
@@ -21,16 +23,6 @@ router.post('/testconnection', (req, res) => {
         }
         console.log(data);
     });
-    /*
-    db.getConnection((err, connection) => {
-        if(err) {
-            console.log(err);
-        }
-        connection.query('select * from polls', (error, results, fields) => {
-            console.log(results);
-        })
-    })
-    */
 })
 
 router.get('/hashid', (req, res) => {

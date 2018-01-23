@@ -9,12 +9,19 @@ class PollFormComponent extends Component {
     constructor(props) {
         super(props)
         this.onTitleChange = this.onTitleChange.bind(this);
+        this.onSavePoll = this.onSavePoll.bind(this);
     }
 
     onTitleChange(e) {
         this.props.updateTitle(e.target.value);
     }
 
+    onSavePoll(e) {
+        this.props.savePoll((data) => {
+            //Redirect to new poll
+            this.props.history.push('/poll')
+        });
+    }
     
     render() {
         let updatePollOption = this.props.updatePollOption;
@@ -32,7 +39,6 @@ class PollFormComponent extends Component {
                     index={index}
                     key={ index } />;
         })
-        console.log(this.props.pollConfigs)
 
         return(
             <div className="poll-form-component">
@@ -57,7 +63,7 @@ class PollFormComponent extends Component {
                                 updateConfig={this.props.updateConfig}/>
                         </div>
                         <div className="save-button-container">
-                            <button className="btn green" onClick={this.props.savePoll}>Stovna spurnarkanning</button>
+                            <button className="btn green" onClick={this.onSavePoll}>Stovna spurnarkanning</button>
                         </div>
                     </div>
                 </div>

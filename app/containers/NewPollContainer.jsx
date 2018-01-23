@@ -34,6 +34,7 @@ class NewPollContainer extends Component{
                     ipBrowserConfigSelected={this.props.ipBrowserConfigSelected}
                     updateIpBrowserConfig={this.props.updateIpBrowserConfig}
                     updateConfig={this.props.updateConfig}
+                    history={this.props.history}
                 />
             </div>
         )
@@ -51,8 +52,8 @@ const mapDispatchToProps = dispatch => {
         lastFieldFocused: (index) => {
             dispatch(lastFieldFocused(index))
         },
-        savePoll: () => {
-            dispatch(savePoll())
+        savePoll: (callback) => {
+            dispatch(savePoll(callback))
         },
         removeField: (index, isLast) => {
             dispatch(removeField(index, isLast))
