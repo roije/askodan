@@ -1,4 +1,10 @@
-import { FETCH_POLL_START, RECEIVE_POLL, FETCH_POLL_END } from './poll-constants';
+import { 
+    FETCH_POLL_START, 
+    RECEIVE_POLL, 
+    FETCH_POLL_END, 
+    SET_POLL_TITLE, 
+    SET_POLL_OPTIONS,
+    SET_IP_BROWSER_CONFIG } from './poll-constants';
 
 ////////////////////////FETCH POLL//////////////////////////
 
@@ -14,13 +20,33 @@ const fetchPollEnd = () => {
     }
 }
 
-const receivePoll = (poll) => {
+const setPollTitle = (title) => {
     return {
-        type: RECEIVE_POLL,
-        title: poll.pollData.title,
-        ip_browser_config: poll.pollData.ip_browser_config_id,
-        pollOptions: poll.pollOptions
+        type: SET_POLL_TITLE,
+        title
     }
+}
+
+const setPollOptions = (options) => {
+    return {
+        type: SET_POLL_OPTIONS,
+        options
+    }
+}
+
+const setPollIpBrowserConfig = (ipBrowserConfig) => {
+    return {
+        type: SET_IP_BROWSER_CONFIG,
+        ipBrowserConfig
+    }
+}
+
+const receivePoll = (poll) => {
+    return (dispatch) => {
+        dispatch(setPollTitle(poll.pollData.title))
+        dispatch(setPollOptions(poll.pollOptions))
+        dispatch(setPollIpBrowserConfig(poll.pollData.ip_browser_config_id))
+    } 
 }
 
 export const fetchPoll = (slug) => {
