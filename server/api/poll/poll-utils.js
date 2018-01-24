@@ -1,3 +1,6 @@
+var Hashids = require('hashids');
+var hashids = new Hashids('', 6);
+
 module.exports = {
     getClockInt: (date) => {
         var clock = date.split(' ')[1];
@@ -18,5 +21,13 @@ module.exports = {
             bulkContainer.push([ pollId, config.id, checkedBool])
         })
         return bulkContainer;
+    },
+    generateHashId: (pollId, createdTimeStamp) => {
+        let encodedHashId = hashids.encode(pollId);
+        return encodedHashId;
+    },
+    decodeHashId: (hashId) => {
+        let decodedHashId = hashids.decode(hashId);
+        return decodedHashId;
     }
 }

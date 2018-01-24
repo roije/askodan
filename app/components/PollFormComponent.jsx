@@ -17,10 +17,14 @@ class PollFormComponent extends Component {
     }
 
     onSavePoll(e) {
-        this.props.savePoll((data) => {
-            //Redirect to new poll
-            this.props.history.push('/poll')
-        });
+        if(this.props.title == "") {
+            console.log('No title')
+        } else {
+            this.props.savePoll((data) => {
+                //Redirect to new poll
+                this.props.history.push('/poll/' + data.slug)
+            });
+        }
     }
     
     render() {

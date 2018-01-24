@@ -17,7 +17,7 @@ class App extends Component{
         return (
             <Switch>
                 <Route exact={true} path="/" component={NewPollContainer}/>
-                <Route path="/poll" component={PollContainer}/>
+                <Route path="/poll/:slug" component={PollContainer}/>
            </Switch>
         )
     }

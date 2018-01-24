@@ -63,12 +63,17 @@ module.exports = {
                                         return callback({"errorMessage" : "Error when doing commit", "error" : err})
                                     });
                                 }
-                                callback(null, {pollId})
+                                /**
+                                 * Generate hash id which is based on the new poll id. 
+                                 * Used in callback to redirect to the new poll and uses the hash id as slug
+                                 */
+                                let hashId = pollUtils.generateHashId(pollId);
+                                callback(null, {pollId, slug: hashId})
                             });   
                         }) 
                     })
                 })
             })
         })
-    }
+    },
 }
