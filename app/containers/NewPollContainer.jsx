@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 //Components
-import TitleComponent from '../components/TitleComponent.jsx';
-import PollFormComponent from '../components/PollFormComponent.jsx';
+import PollFormComponent from '../components/new-poll-components/PollFormComponent.jsx';
 
 //Redux
 import { connect } from 'react-redux'
@@ -20,8 +19,7 @@ class NewPollContainer extends Component{
 
     render() {
         return(
-            <div className="new-poll-container">
-                <TitleComponent/>
+            <div className="poll-container">
                 <PollFormComponent
                     updateTitle={this.props.updateTitle}
                     title={this.props.title}

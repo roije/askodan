@@ -1,0 +1,3 @@
+export const FETCH_POLL_START = "FETCH_POLL_START";
+export const RECEIVE_POLL = "RECEIVE_POLL";
+export const FETCH_POLL_END = "FETCH_POLL_END";

@@ -4,6 +4,7 @@ var router = require('express').Router();
 var pollUtils = require('./poll-utils');
 var pollController = require('./poll-controller');
 var db = require('../../db/mysqlConnection');
+
 router.post('/api/poll', (req, res) => {    
     pollController.savePoll(req.body, (err, data) => {
         if(err) {
@@ -25,16 +26,14 @@ router.post('/testconnection', (req, res) => {
     });
 })
 
-router.get('/hashid', (req, res) => {
-    var id = 1;
-    var date = '2018-01-18 01:01:27';
-    var time = pollUtils.getClockInt(date);
-    console.log(time);
-
-    var encoded = hashids.encode(id, time);
-    var decoded = hashids.decode(encoded);
-    
-    res.send({ "encoded" : encoded, "decoded" : decoded});
+router.get('/poll/:slug', (req, res) => {
+    let slug = req.params.slug;
+    //QdJqob
+    pollController.getPoll(slug, (err, data) => {
+        if(err) {
+            console.log(err);
+        }
+    })
 })
 
 module.exports = router;

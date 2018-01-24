@@ -28,6 +28,6 @@ module.exports = {
     },
     decodeHashId: (hashId) => {
         let decodedHashId = hashids.decode(hashId);
-        return decodedHashId;
+        return decodedHashId[0];
     }
 }

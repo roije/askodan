@@ -18,7 +18,12 @@ body{
     font-family: 'Raleway', sans-serif;
 }
 
-.new-poll-container{
+.title-component{
+    display: flex;
+    justify-content: center;
+}
+
+.poll-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,6 +48,12 @@ body{
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
+}
+.vote-button-container{
+
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;  
 }
 .input-field{
     position: relative;
