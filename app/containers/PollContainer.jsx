@@ -11,9 +11,8 @@ import { fetchPoll } from '../redux/modules/poll/poll-actions';
 
 class PollContainer extends Component{
     componentWillMount() {
-        console.log('Fetch blabla poll with ID', this.props.match.params.id)
-        console.log(this.props);
-        this.props.fetchPoll();
+        let slug = this.props.match.params.slug;
+        this.props.fetchPoll(slug);
     }
 
     render(){

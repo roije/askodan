@@ -78,21 +78,24 @@ module.exports = {
     },
     getPoll: (slug, callback) => {
         let pollId = pollUtils.decodeHashId(slug);
+        console.log(pollId)
         db.getConnection((err, connection) => {
             if(err) {
                 return callback({"errorMessage" : "Error establishing connection", "error" : err})
             }
-            //select a.title, a.ip_browser_config_id, b.poll_value, b.poll_id from polls as a 
-            //join poll_options as b on a.id = b.poll_id where a.id = 164
-            let sqlQuery = `select a.title, a.ip_browser_config_id, b.poll_value, b.poll_id from polls as a 
-                            join poll_options as b
-                            on a.id = b.poll_id
-                            where a.id = ?`
-            connection.query(sqlQuery, [pollId], (err, results, fields) => {
+            connection.query('select title, ip_browser_config_id from polls where id = ?', [pollId], (err, results, fields) => {
                 if(err) {
-                    return callback({"errorMessage" : "Error selecting poll with id" + pollId, "error" : err})   
+                    return callback({"errorMessage" : "Error selecting poll with id" + pollId, "error" : err})      
                 }
-                console.log(results);
+                let pollData = results[0];
+                
+                connection.query('select id, poll_value from poll_options where poll_id = ?', [pollId], (err, results, fields) => {
+                    if(err) {
+                        return callback({"errorMessage" : "Error selecting poll options with id" + pollId, "error" : err})            
+                    }
+                    let pollOptions = results;
+                    callback(null, {pollData, pollOptions})
+                })
             })
         })
         

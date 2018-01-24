@@ -33,6 +33,7 @@ router.get('/poll/:slug', (req, res) => {
         if(err) {
             console.log(err);
         }
+        res.send(data);
     })
 })
 

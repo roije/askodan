@@ -14,12 +14,33 @@ const fetchPollEnd = () => {
     }
 }
 
+const receivePoll = (poll) => {
+    return {
+        type: RECEIVE_POLL,
+        title: poll.pollData.title,
+        ip_browser_config: poll.pollData.ip_browser_config_id,
+        pollOptions: poll.pollOptions
+    }
+}
+
 export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
+        console.log('SLUG', slug)
         dispatch(fetchPollStart())
-        //Add the new field. Last is set to true when object is created.
-        dispatch(fetchPollEnd())
+        fetch('http://localhost:3000/poll/' + slug, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+          })
+        .then((response) =>  response.json())
+        .then((data) => {
+            // do something with your data
+            dispatch(receivePoll(data))
+            dispatch(fetchPollEnd())
+        });   
     }
     //console.log('FETCH THIS POLL', slug);
 }
