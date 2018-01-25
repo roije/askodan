@@ -15,7 +15,7 @@ class PollConfigCheckboxesComponent extends Component{
 
     render() {
         let { options } = this.props;
-        const configCheckboxes = options.map((option, index) => <p><input onClick={this.onCheckClick} type="checkbox" id={"check-" + index}/><label for={"check-" + index}>{option.text}</label></p>)
+        const configCheckboxes = options.map((option, index) => <p><input onClick={this.onCheckClick} type="checkbox" id={"check-" + index}/><label htmlFor={"check-" + index}>{option.text}</label></p>)
         console.log(configCheckboxes);
         return (
             <div className="options-checboxes">

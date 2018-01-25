@@ -84,6 +84,13 @@ const setPollGeneralConfigs = (generalConfigs) => {
 }
 
 const receivePoll = (poll) => {
+    return {
+        type: RECEIVE_POLL,
+        poll
+    }
+}
+/*
+const receivePoll = (poll) => {
     console.log(poll);
     return (dispatch) => {
         dispatch(setPollTitle(poll.pollData.title))
@@ -92,6 +99,7 @@ const receivePoll = (poll) => {
         dispatch(setPollGeneralConfigs(poll.pollGeneralConfigs))
     } 
 }
+*/
 
 export const fetchPoll = (slug) => {
     return function (dispatch) { 

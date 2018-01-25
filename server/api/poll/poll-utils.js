@@ -29,5 +29,13 @@ module.exports = {
     decodeHashId: (hashId) => {
         let decodedHashId = hashids.decode(hashId);
         return decodedHashId[0];
+    },
+    buildPollObject: (poll, pollOptions, pollGeneralConfigs) => {
+        poll.pollOptions = pollOptions;
+        pollGeneralConfigs.map((config, i) => {
+            const value = config.config_value === 1 ? true : false;
+            poll[config.config] = value;
+        })
+        return poll;
     }
 }

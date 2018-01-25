@@ -50,7 +50,7 @@ class NewPollOptionFieldComponent extends Component {
             <div className="poll-form-row">
                 <div className="input-field" id={this.props.index} data-last={this.props.last} >
                     <input type="text" value={this.props.value} onChange={this.onPollOptionChange} onFocus={this.onFieldFocus}/>
-                    <label for={this.props.index}>{this.field}. Svarmøguleiki</label>
+                    <label htmlFor={this.props.index}>{this.field}. Svarmøguleiki</label>
                     {removeButton}
                 </div>
             </div>

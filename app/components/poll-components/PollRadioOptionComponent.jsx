@@ -7,7 +7,7 @@ class PollRadioOptionComponent extends Component{
             <div className="poll-form-row">
                 <p>
                     <input name="radio-group" type="radio" id={"radio" + this.props.index}  />
-                    <label for={"radio" + this.props.index}>{this.props.text}</label>
+                    <label htmlFor={"radio" + this.props.index}>{this.props.text}</label>
                 </p>
             </div>
         )

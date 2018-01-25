@@ -69,6 +69,7 @@ module.exports = {
                                  */
                                 let hashId = pollUtils.generateHashId(pollId);
                                 callback(null, {pollId, slug: hashId})
+                                connection.release();
                             });   
                         }) 
                     })
@@ -100,7 +101,9 @@ module.exports = {
                             return callback({"errorMessage" : "Error selecting poll general configs with id " + pollId, "error" : err})            
                         } 
                         let pollGeneralConfigs = results;
-                        callback(null, {pollData, pollOptions, pollGeneralConfigs})
+                        let poll = pollUtils.buildPollObject(pollData, pollOptions, pollGeneralConfigs);
+                        callback(null, poll)
+                        connection.release();
                     })
                 })
             })
