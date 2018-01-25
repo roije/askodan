@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { fetchPoll } from '../redux/modules/poll/poll-actions';
 
 class PollContainer extends Component{
-    componentWillMount() {
+    componentDidMount() {
         let slug = this.props.match.params.slug;
         this.props.fetchPoll(slug);
     }

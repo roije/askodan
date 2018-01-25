@@ -5,11 +5,25 @@ import PollCheckOptionComponent from './PollCheckOptionComponent.jsx';
 
 const PollOptionsHolderComponent = (props) => {
     let { multiple_answers, pollOptions } = props;
-    console.log(props);
-    if(multiple_answers) {
-        console.log('Do check boxes')
-    } else {
-        console.log('Do radio buttons')
+    
+    let elements = null;
+    if(pollOptions !== undefined) {
+         elements = pollOptions.map((option, index) => {
+            let element = multiple_answers ?  
+            <PollCheckOptionComponent 
+                text={option.poll_value}
+                index={index}
+                key={index}
+                poll_id={option.id}
+            />  : 
+            <PollRadioOptionComponent 
+                text={option.poll_value}
+                index={index}
+                key={index}
+                poll_id={option.id}
+            /> 
+            return element;
+        }) 
     }
     /*
     const buildPollOptionElements = (options, type) => {
@@ -38,7 +52,9 @@ const PollOptionsHolderComponent = (props) => {
     let pollOptionsElements = multiple_answers ? buildPollOptionElements(pollOptions, "check") : buildPollOptionElements(pollOptions, "radio")
     */
     return(
-        <h1>ff</h1>
+        <div className="poll-options-element-holder">
+            {elements}
+        </div>
     )
 }
 
