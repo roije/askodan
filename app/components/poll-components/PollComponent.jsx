@@ -24,6 +24,9 @@ class PollComponent extends Component {
                         <div className="vote-button-container">
                             <button className="btn green">Atkvøð</button>
                         </div>
+                        <div className="show-results-button-container">
+                            <p>Vís úrslit</p>
+                        </div>
                     </div>
                 </div>
             </div>

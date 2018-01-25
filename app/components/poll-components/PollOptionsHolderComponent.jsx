@@ -25,34 +25,9 @@ const PollOptionsHolderComponent = (props) => {
             return element;
         }) 
     }
-    /*
-    const buildPollOptionElements = (options, type) => {
-        let elements = options.map((option, index) => {
-            switch(type) {
-                case "check" :
-                    return <PollCheckOptionComponent 
-                        text={option.poll_value}
-                        index={index}
-                        key={index}
-                        poll_id={option.id}
-                    />
-                case "radio":
-                    return <PollRadioOptionComponent 
-                        text={option.poll_value}
-                        index={index}
-                        key={index}
-                        poll_id={option.id}
-                    />
-            }
-        })
-        console.log(elements);
-        return elements;
-    }
-
-    let pollOptionsElements = multiple_answers ? buildPollOptionElements(pollOptions, "check") : buildPollOptionElements(pollOptions, "radio")
-    */
     return(
         <div className="poll-options-element-holder">
+            {multiple_answers ? <p>Vel eitt ella fleiri svar:</p> : <p>Vel eitt svar:</p>}
             {elements}
         </div>
     )

@@ -1,3 +1,6 @@
+$primary-blue: #1E8BC3;
+$darker-lv1-primary-blue: #1b7daf;
+
 * {
     box-sizing: border-box;
     margin: 0px;
@@ -49,32 +52,60 @@ body{
     display: flex;
     justify-content: flex-end;
 }
-.vote-button-container{
-
+.vote-button-container, .show-results-button-container{
     margin-top: 20px;
     display: flex;
     justify-content: center;  
+
+    p {
+        color: $primary-blue;
+        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+            color: $darker-lv1-primary-blue;
+        }
+    }
 }
+
 .input-field{
     position: relative;
     padding-right: 30px;
 }
  /* label focus color */
  .input-field input[type=text]:focus + label {
-    color: #1E8BC3 !important;
+    color: $primary-blue !important;
 }
 /* label underline focus color */
   .input-field input[type=text]:focus {
-    border-bottom: 1px solid #1E8BC3 !important;
-    box-shadow: 0 1px 0 0 #1E8BC3 !important;
-  }
+    border-bottom: 1px solid $primary-blue !important;
+    box-shadow: 0 1px 0 0 $primary-blue !important;
+}
+
+.poll-option-paragraph{
+    margin-top: 15px;
+
+    .checkbox-blue[type="checkbox"].filled-in:checked + label:after{
+        border: 2px solid $primary-blue !important;
+        background-color: $primary-blue !important;
+   }
+
+    label{
+        color: #373D3F;
+    }
+
+    .radiobutton-blue[type="radio"]:checked + label::after, [type="radio"].with-gap:checked + label::after {
+        border: 2px solid $primary-blue !important;
+        background-color: $primary-blue !important;
+    }
+}
 
 .options-checboxes{
     margin-top: 20px;
 
     input:checked + label:before {
-        border-right: 2px solid #1E8BC3; /* You need to change the colour here */
-        border-bottom: 2px solid #1E8BC3; /* And here */
+        border-right: 2px solid $primary-blue !important; /* You need to change the colour here */
+        border-bottom: 2px solid $primary-blue !important; /* And here */
     }
 
     label{

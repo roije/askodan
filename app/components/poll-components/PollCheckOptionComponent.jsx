@@ -5,8 +5,8 @@ class PollCheckOptionComponent extends Component{
     render() {
         return(
             <div className="poll-form-row">
-                <p>
-                    <input type="checkbox" id={"check-" + this.props.index}  />
+                <p className="poll-option-paragraph">
+                    <input type="checkbox" className="filled-in checkbox-blue" id={"check-" + this.props.index}  />
                     <label htmlFor={"check-" + this.props.index}>{this.props.text}</label>
                 </p>
             </div>
