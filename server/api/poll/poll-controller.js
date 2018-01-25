@@ -78,23 +78,30 @@ module.exports = {
     },
     getPoll: (slug, callback) => {
         let pollId = pollUtils.decodeHashId(slug);
-        console.log(pollId)
         db.getConnection((err, connection) => {
             if(err) {
                 return callback({"errorMessage" : "Error establishing connection", "error" : err})
             }
             connection.query('select title, ip_browser_config_id from polls where id = ?', [pollId], (err, results, fields) => {
                 if(err) {
-                    return callback({"errorMessage" : "Error selecting poll with id" + pollId, "error" : err})      
+                    return callback({"errorMessage" : "Error selecting poll with id " + pollId, "error" : err})      
                 }
                 let pollData = results[0];
                 
                 connection.query('select id, poll_value from poll_options where poll_id = ?', [pollId], (err, results, fields) => {
                     if(err) {
-                        return callback({"errorMessage" : "Error selecting poll options with id" + pollId, "error" : err})            
+                        return callback({"errorMessage" : "Error selecting poll options with id " + pollId, "error" : err})            
                     }
                     let pollOptions = results;
-                    callback(null, {pollData, pollOptions})
+
+                    connection.query(
+                    `select a.general_config_id, a.config_value, b.config from polls_general_configs as a join general_configs as b on a.general_config_id = b.id where poll_id = ?`, [pollId], (err, results, fields) => {
+                        if(err) {
+                            return callback({"errorMessage" : "Error selecting poll general configs with id " + pollId, "error" : err})            
+                        } 
+                        let pollGeneralConfigs = results;
+                        callback(null, {pollData, pollOptions, pollGeneralConfigs})
+                    })
                 })
             })
         })

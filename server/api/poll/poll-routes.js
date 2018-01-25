@@ -12,7 +12,6 @@ router.post('/api/poll', (req, res) => {
             return;
         }
         //res.send(data);
-        console.log(data)
         res.send(data);
     })
 })

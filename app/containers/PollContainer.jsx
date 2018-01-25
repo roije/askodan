@@ -19,6 +19,8 @@ class PollContainer extends Component{
         return (
             <div className="poll-container">
                 <PollComponent 
+                    title={this.props.title}
+                    pollOptions={this.props.pollOptions}
                 /> 
             </div>
         )
@@ -36,6 +38,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         title: state.pollReducer.title,
+        pollOptions: state.pollReducer.pollOptions
     }
 }
 
