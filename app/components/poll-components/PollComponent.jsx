@@ -7,6 +7,17 @@ import PollCheckOptionComponent from './PollCheckOptionComponent.jsx';
 import PollOptionsHolder from './PollOptionsHolderComponent.jsx';
 
 class PollComponent extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.onClickSaveVote = this.onClickSaveVote.bind(this);
+    }
+
+    onClickSaveVote() {
+        this.props.saveVote();
+    }
+
     render(){
         return(
             <div className="poll-form-component">
@@ -20,9 +31,10 @@ class PollComponent extends Component {
                         <PollOptionsHolder 
                             pollOptions={this.props.poll.pollOptions}
                             multiple_answers = {this.props.poll.multiple_answers}
+                            pollRadioOptionClicked={this.props.pollRadioOptionClicked}
                         />
                         <div className="vote-button-container">
-                            <button className="btn green">Atkvøð</button>
+                            <button onClick={this.onClickSaveVote} className="btn green">Atkvøð</button>
                         </div>
                         <div className="show-results-button-container">
                             <p>Vís úrslit</p>

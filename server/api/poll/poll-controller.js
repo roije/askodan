@@ -83,7 +83,7 @@ module.exports = {
             if(err) {
                 return callback({"errorMessage" : "Error establishing connection", "error" : err})
             }
-            connection.query('select title, ip_browser_config_id from polls where id = ?', [pollId], (err, results, fields) => {
+            connection.query('select id, title, ip_browser_config_id from polls where id = ?', [pollId], (err, results, fields) => {
                 if(err) {
                     return callback({"errorMessage" : "Error selecting poll with id " + pollId, "error" : err})      
                 }
@@ -109,5 +109,18 @@ module.exports = {
             })
         })
         
+    },
+    saveVote: (vote, callback) => {
+        db.getConnection((err, connection) => {
+            if(err) {
+                return callback({"errorMessage" : "Error establishing connection", "error" : err})
+            }
+            connection.query('insert into votes (option_id) values (?)', [vote.pollOption.id], (err, results, fields) => {
+                if(err) {
+                    return callback({"errorMessage" : "Error selecting when saving vote" + vote, "error" : err})            
+                }
+                callback(null, 'Success')
+            })    
+        })
     }
 }

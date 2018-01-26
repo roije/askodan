@@ -7,7 +7,7 @@ import PollComponent from '../components/poll-components/PollComponent.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { fetchPoll } from '../redux/modules/poll/poll-actions';
+import { fetchPoll, pollRadioOptionClicked, saveVote } from '../redux/modules/poll/poll-actions';
 
 class PollContainer extends Component{
     componentDidMount() {
@@ -21,6 +21,8 @@ class PollContainer extends Component{
             <div className="poll-container">
                 <PollComponent 
                     poll={this.props.poll}
+                    pollRadioOptionClicked={this.props.pollRadioOptionClicked}
+                    saveVote={this.props.saveVote}
                 /> 
             </div>
         )
@@ -29,8 +31,14 @@ class PollContainer extends Component{
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchPoll : (slug) => {
+        fetchPoll: (slug) => {
             dispatch(fetchPoll(slug))
+        },
+        pollRadioOptionClicked: (index) => {
+            dispatch(pollRadioOptionClicked(index))
+        },
+        saveVote: () => {
+            dispatch(saveVote())
         }
     }
 }

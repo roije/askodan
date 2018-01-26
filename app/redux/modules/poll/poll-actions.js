@@ -2,6 +2,9 @@ import {
     FETCH_POLL_START, 
     RECEIVE_POLL, 
     FETCH_POLL_END, 
+    POLL_RADIO_OPTION_CLICKED,
+    SAVE_VOTE_START,
+    SAVE_VOTE_END
 } from './poll-constants';
 
 ////////////////////////FETCH POLL//////////////////////////
@@ -44,5 +47,54 @@ export const fetchPoll = (slug) => {
             dispatch(fetchPollEnd())
         });   
     }
-    //console.log('FETCH THIS POLL', slug);
+}
+
+/////////////////POLL RADIO CLICKED////////////////
+
+export const pollRadioOptionClicked = (index) => {
+    return {
+        type: POLL_RADIO_OPTION_CLICKED,
+        index
+    }
+}
+
+//////////////////////////////////////////////////
+
+////////////////SAVE ONE ANSWER VOTE/////////////
+
+const saveVoteStart = () => {
+    return {
+        type: SAVE_VOTE_START
+    }
+}
+const saveVoteEnd = () => {
+    return {
+        type: SAVE_VOTE_END
+    }
+}
+
+export const saveVote = () => {
+    return (dispatch, getState) => {
+        dispatch(saveVoteStart());
+        let pollReducer = getState().pollReducer;
+        let voteIndex = pollReducer.vote;
+        let pollOption = pollReducer.poll.pollOptions[voteIndex];
+        let pollId = pollReducer.poll.id;
+        fetch('http://localhost:3000/api/poll/vote', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                pollOption
+            })
+          }).then((response) => {
+            response.json().then(function(data) {
+                // do something with your data
+                callback(data);
+                dispatch(saveVoteEnd());
+              });
+          })
+    }
 }

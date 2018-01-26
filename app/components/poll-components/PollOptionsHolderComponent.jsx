@@ -14,13 +14,14 @@ const PollOptionsHolderComponent = (props) => {
                 text={option.poll_value}
                 index={index}
                 key={index}
-                poll_id={option.id}
+                id={option.id}
             />  : 
             <PollRadioOptionComponent 
                 text={option.poll_value}
                 index={index}
                 key={index}
-                poll_id={option.id}
+                id={option.id}
+                pollRadioOptionClicked={props.pollRadioOptionClicked}
             /> 
             return element;
         }) 
