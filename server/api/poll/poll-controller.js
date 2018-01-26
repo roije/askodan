@@ -94,7 +94,7 @@ module.exports = {
                         return callback({"errorMessage" : "Error selecting poll options with id " + pollId, "error" : err})            
                     }
                     let pollOptions = results;
-
+                    console.log(pollOptions)
                     connection.query(
                     `select a.general_config_id, a.config_value, b.config from polls_general_configs as a join general_configs as b on a.general_config_id = b.id where poll_id = ?`, [pollId], (err, results, fields) => {
                         if(err) {
@@ -122,5 +122,14 @@ module.exports = {
                 callback(null, 'Success')
             })    
         })
+    },
+    getPollVotes: (pollId) => {
+        /**
+         * select a.option_id, count(*) as votes from votes as a 
+            join poll_options as b 
+            on a.option_id = b.id
+            where b.poll_id = 178
+            group by a.option_id
+         */
     }
 }
