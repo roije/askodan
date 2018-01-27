@@ -22,7 +22,8 @@ class PollContainer extends Component{
     }
 
     render(){
-        console.log(this.props);
+        let { showing } = this.props;
+        let resultsComponent = showing ? <Route path="/poll/:slug" component={PollResultsContainer}/> : null;
         return (
             <div className="poll-container">
                 <PollComponent 
@@ -32,7 +33,7 @@ class PollContainer extends Component{
                     slug={this.props.match.params.slug}
                     showResults={this.props.showResults}
                 /> 
-                <Route path="/poll/:slug" component={PollResultsContainer}/>
+                {resultsComponent}
             </div>
         )
     }
@@ -57,7 +58,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        poll: state.pollReducer.poll
+        poll: state.pollReducer.poll,
+        showing: state.pollResultsReducer.showing
     }
 }
 

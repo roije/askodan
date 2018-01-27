@@ -16,13 +16,19 @@ class PollResultsContainer extends Component{
         console.log(props)
     }
 
+    componentDidMount() {
+        console.log('RESULTS CONTAINER DID MOUNT');
+    }
+
     render() {
+        /*
         let { showing } = this.props;
         let resultsComponent = showing ? <PollResultsComponent /> : null;
+        */
 
         return(
             <div>
-                {resultsComponent}
+                <PollResultsComponent />
             </div>
         )
     }
