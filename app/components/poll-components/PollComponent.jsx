@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-
+import {
+    Link
+} from 'react-router-dom'
 //React components
 import PollRadioOptionComponent from './PollRadioOptionComponent.jsx';
 import PollCheckOptionComponent from './PollCheckOptionComponent.jsx';
@@ -12,10 +14,16 @@ class PollComponent extends Component {
         super(props);
 
         this.onClickSaveVote = this.onClickSaveVote.bind(this);
+        this.onShowResults = this.onShowResults.bind(this);
     }
 
     onClickSaveVote() {
         this.props.saveVote();
+    }
+
+    onShowResults() {
+        this.props.showResults();
+        console.log('Show results')
     }
 
     render(){
@@ -37,7 +45,7 @@ class PollComponent extends Component {
                             <button onClick={this.onClickSaveVote} className="btn green">Atkvøð</button>
                         </div>
                         <div className="show-results-button-container">
-                            <p>Vís úrslit</p>
+                            <Link onClick={this.onShowResults} to={`/poll/${this.props.slug}`}>Vís úrslit</Link>
                         </div>
                     </div>
                 </div>

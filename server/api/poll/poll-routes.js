@@ -46,4 +46,8 @@ router.post('/api/poll/vote', (req, res) => {
     })
 })
 
+router.get('/api/poll/:slug/votes', (req, res) => {
+    
+})
+
 module.exports = router;

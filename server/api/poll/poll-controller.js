@@ -119,7 +119,8 @@ module.exports = {
                 if(err) {
                     return callback({"errorMessage" : "Error selecting when saving vote" + vote, "error" : err})            
                 }
-                callback(null, 'Success')
+                callback(null, 'Success');
+                connection.release();
             })    
         })
     },
@@ -131,5 +132,24 @@ module.exports = {
             where b.poll_id = 178
             group by a.option_id
          */
+        db.getConnection((err, connection) => {
+            if(err) {
+                return callback({"errorMessage" : "Error establishing connection", "error" : err})
+            }
+        })
+        console.log(pollId);
+        /*
+        connection.query(`select a.option_id, count(*) as votes 
+        from votes as a join poll_options as b 
+        on a.option_id = b.i 
+        where b.poll_id = ? 
+        group by a.option_id`, [pollId], (err, results, fields) => {
+            if(err) {
+                return callback({"errorMessage" : "Error selecting when saving vote" + vote, "error" : err})            
+            }
+            callback(null, 'Success');
+            connection.release();
+        })
+        */
     }
 }

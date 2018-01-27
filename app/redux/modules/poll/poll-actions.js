@@ -31,7 +31,6 @@ const receivePoll = (poll) => {
 export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
-        console.log('SLUG', slug)
         dispatch(fetchPollStart())
         fetch('http://localhost:3000/poll/' + slug, {
             method: 'get',

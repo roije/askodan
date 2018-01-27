@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import NewPollContainer from './containers/NewPollContainer.jsx';
 import PollContainer from './containers/PollContainer.jsx';
-
+import PollResultsContainer from './containers/PollResultsContainer.jsx';
 
 //Styles
 import style from '../public/style.scss';
