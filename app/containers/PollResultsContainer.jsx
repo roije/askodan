@@ -29,9 +29,7 @@ class PollResultsContainer extends Component{
         */
 
         return(
-            <div>
-                <PollResultsComponent />
-            </div>
+            <PollResultsComponent />
         )
     }
 }

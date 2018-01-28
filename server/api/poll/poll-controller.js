@@ -136,12 +136,13 @@ module.exports = {
             if(err) {
                 return callback({"errorMessage" : "Error establishing connection", "error" : err})
             }
-
-            connection.query(`select a.option_id, b.poll_value, count(*) as votes 
-            from votes as a join poll_options as b 
-            on a.option_id = b.id 
-            where b.poll_id = ? 
-            group by a.option_id`, [pollId], (err, results, fields) => {
+            let sqlQuery = `select a.id, a.poll_value, count(b.id) as votes
+            from poll_options as a
+            left join votes as b 
+            on a.id = b.option_id
+            where a.poll_id = ?
+            group by a.id`
+            connection.query(sqlQuery, [pollId], (err, results, fields) => {
                 if(err) {
                     return callback({"errorMessage" : "Error selecting poll vote results", "error" : err})            
                 }

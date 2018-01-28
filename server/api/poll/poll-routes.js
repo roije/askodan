@@ -52,7 +52,7 @@ router.get('/api/poll/:slug/votes', (req, res) => {
         if(err) {
             console.log(err)
         }
-        console.log(votes);
+        res.send(votes)
     })
 })
 
