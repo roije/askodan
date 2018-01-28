@@ -23,10 +23,6 @@ class PollResultsContainer extends Component{
     }
 
     render() {
-        /*
-        let { showing } = this.props;
-        let resultsComponent = showing ? <PollResultsComponent /> : null;
-        */
 
         return(
             <PollResultsComponent />
