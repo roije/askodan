@@ -23,6 +23,13 @@ const fetchResultsEnd = () => {
     }
 }
 
+const receiveResults = (results) => {
+    return {
+        type: RECEIVE_RESULTS,
+        results
+    }
+}
+
 export const fetchPollResults = (slug) => {
     return (dispatch) => {
         dispatch(fetchResultsStart());
@@ -36,9 +43,9 @@ export const fetchPollResults = (slug) => {
         .then((response) =>  response.json())
         .then((data) => {
             // do something with your data
-            console.log(data);
+            dispatch(receiveResults(data));
+            dispatch(fetchResultsEnd());
         }); 
-        dispatch(fetchResultsEnd());
     }
 }
 

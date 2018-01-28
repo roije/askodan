@@ -14,7 +14,7 @@ class PollResultsComponent extends Component{
             <div className="poll-form-component">
                 <div className="card">
                     <div className="poll-card-container">
-                        <ResultsBarsHolderComponent />
+                        <ResultsBarsHolderComponent results={this.props.results}/>
                     </div>
                 </div>
             </div>

@@ -3,12 +3,25 @@ import React from 'react';
 import ResultsBarComponent from './ResultsBarComponent.jsx';
 
 const ResultsBarsHolderComponent = (props) => {
- 
+
+    let colors = [
+        "#00b4ff",
+        "#f34a58",
+        "#4af392"
+    ]
+
+    let resultBars = props.results.map((pollOption, index) => {
+        let color = colors[index];
+        return <ResultsBarComponent key={index} 
+            title={pollOption.poll_value} 
+            votes={pollOption.votes} 
+            percentage={pollOption.percentage}
+            color={color}/>
+
+    })
     return(
         <div className="poll-results-bars-holder">
-            <ResultsBarComponent percentage={20}/>
-            <ResultsBarComponent percentage={70}/>
-            <ResultsBarComponent percentage={10}/>
+            {resultBars}
         </div>
     )
 }

@@ -25,7 +25,7 @@ class PollResultsContainer extends Component{
     render() {
 
         return(
-            <PollResultsComponent />
+            <PollResultsComponent results={this.props.results}/>
         )
     }
 }
@@ -40,7 +40,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        showing: state.pollResultsReducer.showing
+        showing: state.pollResultsReducer.showing,
+        results: state.pollResultsReducer.results
     }
 }
 

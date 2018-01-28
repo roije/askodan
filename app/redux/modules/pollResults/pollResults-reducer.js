@@ -6,7 +6,8 @@ import {
 } from './pollResults-constants';
 const initialState = {
     showing: false,
-    fetching: false
+    fetching: false,
+    results: []
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,8 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, { fetching: true})
         case FETCH_RESULTS_END: 
             return Object.assign({}, state, { fetching: false})
+        case RECEIVE_RESULTS: 
+            return Object.assign({}, state, { results: action.results})
         default:
             return state;
     }

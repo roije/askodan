@@ -12,11 +12,11 @@ class ResultsBarComponent extends Component{
         return(
             <div className="results-bar">
                 <div className="results-labels">
-                    <p>Test</p>
-                    <p>Percentage</p>
+                    <p>{this.props.title}</p>
+                    <p>{this.props.percentage}% (Atkvøður: {this.props.votes})</p>
                 </div>
                 <div className="progress-bar-outer">
-                    <Progress completed={this.props.percentage} />
+                    <Progress color={this.props.color} completed={this.props.percentage} />
                 </div>
             </div>
         )

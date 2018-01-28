@@ -146,6 +146,8 @@ module.exports = {
                 if(err) {
                     return callback({"errorMessage" : "Error selecting poll vote results", "error" : err})            
                 }
+                let total = pollUtils.getVotesTotal(results);
+                results = pollUtils.appendPercantagePollOptions(total, results);
                 callback(null, results);
                 connection.release();
             })

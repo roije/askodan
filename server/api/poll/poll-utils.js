@@ -37,5 +37,19 @@ module.exports = {
             poll[config.config] = value;
         })
         return poll;
+    },
+    getVotesTotal: (votes) => {
+        let total = 0;
+        votes.map((pollOption, index) => {
+            total += pollOption.votes
+        })
+        return total;
+    },
+    appendPercantagePollOptions: (total, results) => {
+        results = results.map((pollOption, index) => {
+            let percentage = Math.floor((pollOption.votes / total) * 100);
+            return Object.assign({}, pollOption, { percentage: percentage})
+        })
+        return results;
     }
 }
