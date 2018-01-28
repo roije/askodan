@@ -12,7 +12,7 @@ import PollResultsContainer from './PollResultsContainer.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { fetchPoll, pollRadioOptionClicked, saveVote } from '../redux/modules/poll/poll-actions';
+import { fetchPoll, pollRadioOptionClicked, saveVote, pollCheckClicked, saveVotes } from '../redux/modules/poll/poll-actions';
 import { showResults } from '../redux/modules/pollResults/pollResults-actions';
 
 class PollContainer extends Component{
@@ -30,8 +30,10 @@ class PollContainer extends Component{
                     poll={this.props.poll}
                     pollRadioOptionClicked={this.props.pollRadioOptionClicked}
                     saveVote={this.props.saveVote}
+                    saveVotes={this.props.saveVotes}
                     slug={this.props.match.params.slug}
                     showResults={this.props.showResults}
+                    pollCheckClicked={this.props.pollCheckClicked}
                 /> 
                 {resultsComponent}
             </div>
@@ -50,8 +52,14 @@ const mapDispatchToProps = dispatch => {
         saveVote: () => {
             dispatch(saveVote())
         },
+        saveVotes: () => {
+            dispatch(saveVotes())
+        },
         showResults: () => {
             dispatch(showResults())
+        },
+        pollCheckClicked: (index) => {
+            dispatch(pollCheckClicked(index))
         }
     }
 }

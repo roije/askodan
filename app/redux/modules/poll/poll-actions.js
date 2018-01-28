@@ -2,9 +2,13 @@ import {
     FETCH_POLL_START, 
     RECEIVE_POLL, 
     FETCH_POLL_END, 
+    CREATE_POLL_CHECK_LIST,
+    POLL_CHECK_CLICKED,
     POLL_RADIO_OPTION_CLICKED,
     SAVE_VOTE_START,
-    SAVE_VOTE_END
+    SAVE_VOTE_END,
+    SAVE_VOTES_START,
+    SAVE_VOTES_END
 } from './poll-constants';
 
 ////////////////////////FETCH POLL//////////////////////////
@@ -28,6 +32,23 @@ const receivePoll = (poll) => {
     }
 }
 
+const createPollCheckList = (checkList) => {
+    return {
+        type: CREATE_POLL_CHECK_LIST,
+        checkList
+    }
+}
+
+const buildPollCheckList = (pollOptions) => {
+    let checkList = [];
+    for(let i = 0; i < pollOptions.length; i++) {
+        checkList.push({index : i, checked: false})
+    }
+    return (dispatch) => {
+        dispatch(createPollCheckList(checkList));
+    }
+}
+
 export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
@@ -43,6 +64,9 @@ export const fetchPoll = (slug) => {
         .then((data) => {
             // do something with your data
             dispatch(receivePoll(data))
+            if(data.multiple_answers) {
+                dispatch(buildPollCheckList(data.pollOptions));
+            }
             dispatch(fetchPollEnd())
         });   
     }
@@ -97,3 +121,60 @@ export const saveVote = () => {
           })
     }
 }
+
+///////////////////POLL CHECK CLICKED//////////////////
+
+export const pollCheckClicked = (index) => {
+    return {
+        type: POLL_CHECK_CLICKED,
+        index
+    }
+} 
+
+//////////////////////////////////////////////////////
+
+///////////////SAVE MULTIPLE ANSWER VOTE//////////////
+
+const saveVotesStart = () => {
+    return {
+        type: SAVE_VOTES_START
+    }
+}
+
+const saveVotesEnd = () => {
+    return {
+        type: SAVE_VOTES_END
+    }
+}
+ 
+export const saveVotes = () => {
+    return (dispatch, getState) => {
+        dispatch(saveVotesStart());
+        let pollReducer = getState().pollReducer;
+        let votes = []
+        pollReducer.pollCheckList.map((option, i) => {
+            if(option.checked) {
+                let pollOption = pollReducer.poll.pollOptions[i];
+                votes.push(pollOption);
+            }
+        });
+        fetch('http://localhost:3000/api/poll/votes', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                votes
+            })
+          }).then((response) => {
+            response.json().then(function(data) {
+                // do something with your data
+                callback(data);
+                dispatch(saveVotesEnd());
+            });
+        })
+    }
+}
+
+//////////////////////////////////////////////////////

@@ -15,6 +15,7 @@ const PollOptionsHolderComponent = (props) => {
                 index={index}
                 key={index}
                 id={option.id}
+                pollCheckClicked={props.pollCheckClicked}
             />  : 
             <PollRadioOptionComponent 
                 text={option.poll_value}

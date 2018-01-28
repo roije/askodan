@@ -46,6 +46,16 @@ router.post('/api/poll/vote', (req, res) => {
     })
 })
 
+router.post('/api/poll/votes', (req, res) => {
+    let votes = req.body.votes;
+    pollController.saveVotes(votes, (err, data) => {
+        if(err) {
+            console.log(err)
+        }
+        console.log(data);
+    })
+})
+
 router.get('/api/poll/:slug/votes', (req, res) => {
     let slug = req.params.slug;
     pollController.getPollVotes(slug, (err, votes) => {

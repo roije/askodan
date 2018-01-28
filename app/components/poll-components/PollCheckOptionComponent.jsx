@@ -13,6 +13,7 @@ class PollCheckOptionComponent extends Component{
         console.log(e.target);
         let index = Number(e.target.id.split('-')[1]);
         console.log(index);
+        this.props.pollCheckClicked(index);
         //this.props.pollRadioOptionClicked(index);
     } 
 

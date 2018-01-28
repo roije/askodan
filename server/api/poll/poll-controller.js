@@ -123,6 +123,22 @@ module.exports = {
             })    
         })
     },
+    saveVotes: (votes, callback) => {
+        db.getConnection((err, connection) => {
+            if(err) {
+                return callback({"errorMessage" : "Error establishing connection", "error" : err})
+            }
+
+            let votesBulk = pollUtils.buildVotesBulk(votes);
+            connection.query('insert into votes (option_id) values ?', [votesBulk], (err, results, fields) => {
+                if(err) {
+                    return callback({"errorMessage" : "Error selecting when saving votes", "error" : err})            
+                }
+                callback(null, 'Success');
+                connection.release();
+            })    
+        })
+    },
     getPollVotes: (slug, callback) => {
         let pollId = pollUtils.decodeHashId(slug);
         /**

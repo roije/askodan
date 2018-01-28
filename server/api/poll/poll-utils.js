@@ -48,8 +48,15 @@ module.exports = {
     appendPercantagePollOptions: (total, results) => {
         results = results.map((pollOption, index) => {
             let percentage = Math.floor((pollOption.votes / total) * 100);
-            return Object.assign({}, pollOption, { percentage: 50})
+            return Object.assign({}, pollOption, { percentage: percentage})
         })
         return results;
+    },
+    buildVotesBulk: (votes) => {
+        const bulkContainer = [];
+        votes.map((vote) => {
+            bulkContainer.push([ vote.id ])
+        })
+        return bulkContainer;
     }
 }

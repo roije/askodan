@@ -18,7 +18,9 @@ class PollComponent extends Component {
     }
 
     onClickSaveVote() {
-        this.props.saveVote();
+        let multiple_answers = this.props.poll.multiple_answers;
+        multiple_answers ? this.props.saveVotes() : this.props.saveVote();
+        
     }
 
     onShowResults() {
@@ -40,6 +42,7 @@ class PollComponent extends Component {
                             pollOptions={this.props.poll.pollOptions}
                             multiple_answers = {this.props.poll.multiple_answers}
                             pollRadioOptionClicked={this.props.pollRadioOptionClicked}
+                            pollCheckClicked={this.props.pollCheckClicked}
                         />
                         <div className="vote-button-container">
                             <button onClick={this.onClickSaveVote} className="btn green">Atkvøð</button>
