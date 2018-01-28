@@ -26,6 +26,18 @@ const fetchResultsEnd = () => {
 export const fetchPollResults = (slug) => {
     return (dispatch) => {
         dispatch(fetchResultsStart());
+        fetch('http://localhost:3000/api/poll/' + slug + '/votes', {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+          })
+        .then((response) =>  response.json())
+        .then((data) => {
+            // do something with your data
+            console.log(data);
+        }); 
         dispatch(fetchResultsEnd());
     }
 }

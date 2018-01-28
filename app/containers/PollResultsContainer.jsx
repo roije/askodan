@@ -17,7 +17,8 @@ class PollResultsContainer extends Component{
     }
 
     componentDidMount() {
-        this.props.fetchPollResults();
+        let slug = this.props.match.params.slug;
+        this.props.fetchPollResults(slug);
         console.log('RESULTS CONTAINER DID MOUNT');
     }
 

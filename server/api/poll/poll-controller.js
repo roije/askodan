@@ -94,7 +94,6 @@ module.exports = {
                         return callback({"errorMessage" : "Error selecting poll options with id " + pollId, "error" : err})            
                     }
                     let pollOptions = results;
-                    console.log(pollOptions)
                     connection.query(
                     `select a.general_config_id, a.config_value, b.config from polls_general_configs as a join general_configs as b on a.general_config_id = b.id where poll_id = ?`, [pollId], (err, results, fields) => {
                         if(err) {
@@ -124,7 +123,8 @@ module.exports = {
             })    
         })
     },
-    getPollVotes: (pollId) => {
+    getPollVotes: (slug, callback) => {
+        let pollId = pollUtils.decodeHashId(slug);
         /**
          * select a.option_id, count(*) as votes from votes as a 
             join poll_options as b 
@@ -136,20 +136,18 @@ module.exports = {
             if(err) {
                 return callback({"errorMessage" : "Error establishing connection", "error" : err})
             }
+
+            connection.query(`select a.option_id, b.poll_value, count(*) as votes 
+            from votes as a join poll_options as b 
+            on a.option_id = b.id 
+            where b.poll_id = ? 
+            group by a.option_id`, [pollId], (err, results, fields) => {
+                if(err) {
+                    return callback({"errorMessage" : "Error selecting poll vote results", "error" : err})            
+                }
+                callback(null, results);
+                connection.release();
+            })
         })
-        console.log(pollId);
-        /*
-        connection.query(`select a.option_id, count(*) as votes 
-        from votes as a join poll_options as b 
-        on a.option_id = b.i 
-        where b.poll_id = ? 
-        group by a.option_id`, [pollId], (err, results, fields) => {
-            if(err) {
-                return callback({"errorMessage" : "Error selecting when saving vote" + vote, "error" : err})            
-            }
-            callback(null, 'Success');
-            connection.release();
-        })
-        */
     }
 }

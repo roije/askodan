@@ -47,7 +47,13 @@ router.post('/api/poll/vote', (req, res) => {
 })
 
 router.get('/api/poll/:slug/votes', (req, res) => {
-    
+    let slug = req.params.slug;
+    pollController.getPollVotes(slug, (err, votes) => {
+        if(err) {
+            console.log(err)
+        }
+        console.log(votes);
+    })
 })
 
 module.exports = router;
