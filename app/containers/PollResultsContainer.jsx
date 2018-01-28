@@ -7,7 +7,7 @@ import PollResultsComponent from '../components/poll-results-components/PollResu
 import { connect } from 'react-redux'
 
 //Redux actions
-import { showResults } from '../redux/modules/pollResults/pollResults-actions.js';
+import { showResults, fetchPollResults } from '../redux/modules/pollResults/pollResults-actions.js';
 
 class PollResultsContainer extends Component{
     constructor(props) {
@@ -17,6 +17,7 @@ class PollResultsContainer extends Component{
     }
 
     componentDidMount() {
+        this.props.fetchPollResults();
         console.log('RESULTS CONTAINER DID MOUNT');
     }
 
@@ -36,7 +37,9 @@ class PollResultsContainer extends Component{
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        fetchPollResults: (slug) => {
+            dispatch(fetchPollResults(slug))
+        }
     }
 }
 
