@@ -2,7 +2,8 @@ import {
     SHOW_RESULTS,
     FETCH_RESULTS_START,
     RECEIVE_RESULTS,
-    FETCH_RESULTS_END
+    FETCH_RESULTS_END,
+    TAB_CHART_SELECTED
 } from './pollResults-constants';
 
 //////////////FETCHING POLL RESULTS////////////////////
@@ -52,3 +53,12 @@ export const fetchPollResults = (slug) => {
 
 
 //////////////////////////////////////////////////////
+
+////////////////////SWITCH CHART TABS//////////////////
+
+export const chartTabSelected = (tab) => {
+    return {
+        type: TAB_CHART_SELECTED,
+        tab
+    }
+}

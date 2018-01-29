@@ -7,7 +7,7 @@ import PollResultsComponent from '../components/poll-results-components/PollResu
 import { connect } from 'react-redux'
 
 //Redux actions
-import { showResults, fetchPollResults } from '../redux/modules/pollResults/pollResults-actions.js';
+import { showResults, fetchPollResults, chartTabSelected } from '../redux/modules/pollResults/pollResults-actions.js';
 
 class PollResultsContainer extends Component{
     constructor(props) {
@@ -25,7 +25,11 @@ class PollResultsContainer extends Component{
     render() {
 
         return(
-            <PollResultsComponent results={this.props.results}/>
+            <PollResultsComponent 
+                results={this.props.results}
+                chartTabSelected={this.props.chartTabSelected}
+                activeTab={this.props.activeTab}
+            />
         )
     }
 }
@@ -34,6 +38,9 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchPollResults: (slug) => {
             dispatch(fetchPollResults(slug))
+        },
+        chartTabSelected: (tab) => {
+            dispatch(chartTabSelected(tab))
         }
     }
 }
@@ -41,7 +48,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         showing: state.pollResultsReducer.showing,
-        results: state.pollResultsReducer.results
+        results: state.pollResultsReducer.results,
+        activeTab: state.pollResultsReducer.activeTab
     }
 }
 

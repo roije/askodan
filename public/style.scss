@@ -148,6 +148,17 @@ body{
     }
 }
 
+.tabs-container{
+    .tabs{
+        .tab a{
+            color: $primary-blue;
+        }
+        .indicator{
+            background-color: $primary-blue;
+        }
+    }
+}
+
 @media (min-width: 768px) {
     .container {
     width: 750px;
