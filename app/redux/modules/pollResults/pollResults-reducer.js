@@ -6,7 +6,7 @@ import {
     TAB_CHART_SELECTED
 } from './pollResults-constants';
 const initialState = {
-    showing: true,
+    showing: false,
     fetching: false,
     results: [],
     activeTab: "pie"

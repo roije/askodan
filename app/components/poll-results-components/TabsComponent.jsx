@@ -14,13 +14,18 @@ class TabsComponent extends Component {
     }
 
     render() {
+        /** jQuery necessary to initialize the tabs */
+        $(document).ready(function(){
+            $('ul.tabs').tabs();
+            });
+
         return(
             <div className="tabs-container">
-                <div class="row">
-                    <div class="col s12">
-                        <ul class="tabs">
-                            <li class="tab col s6"><a onClick={this.onTabClick} id="pie" active href="">Køkumynd</a></li>
-                            <li class="tab col s6"><a onClick={this.onTabClick} id="bar" href="">Stólpamynd</a></li>
+                <div className="row">
+                    <div className="col s12">
+                        <ul className="tabs">
+                            <li className="tab col s6"><a onClick={this.onTabClick} id="pie">Køkumynd</a></li>
+                            <li className="tab col s6"><a onClick={this.onTabClick} id="bar">Stólpamynd</a></li>
                         </ul>
                     </div>
                </div>

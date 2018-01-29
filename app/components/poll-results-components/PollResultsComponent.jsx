@@ -12,6 +12,7 @@ class PollResultsComponent extends Component{
     }
 
     render() {
+        console.log(this.props.results)
         return(
             <div className="poll-form-component">
                 <div className="card">
@@ -20,7 +21,10 @@ class PollResultsComponent extends Component{
                         <TabsComponent 
                             chartTabSelected={this.props.chartTabSelected}
                         />
-                        <PollResultsChartsComponent activeTab={this.props.activeTab}/>
+                        <PollResultsChartsComponent 
+                            activeTab={this.props.activeTab}
+                            results={this.props.results}
+                        />
                     </div>
                 </div>
             </div>

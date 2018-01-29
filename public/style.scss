@@ -149,9 +149,11 @@ body{
 }
 
 .tabs-container{
+    margin-top: 20px;
     .tabs{
         .tab a{
             color: $primary-blue;
+            cursor: pointer;
         }
         .indicator{
             background-color: $primary-blue;
