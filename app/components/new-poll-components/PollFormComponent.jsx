@@ -51,7 +51,7 @@ class PollFormComponent extends Component {
                         <div className="poll-form-row">
                             <div className="input-field">
                                 <input placeholder="Skriva spurningin her..." value={this.props.title} onChange={this.onTitleChange} id="field_poll_title" type="text" />
-                                <label for="field_poll_title">Spurningur</label>
+                                <label htmlFor="field_poll_title">Spurningur</label>
                             </div>
                         </div>
                         {pollOptions}

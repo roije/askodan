@@ -9,6 +9,7 @@ class ResultsBarComponent extends Component{
     }
 
     render() {
+        let percentage = this.props.percentage  ? this.props.percentage : 0;
         return(
             <div className="results-bar">
                 <div className="results-labels">
@@ -16,7 +17,7 @@ class ResultsBarComponent extends Component{
                     <p>{this.props.percentage}% (Atkvøður: {this.props.votes})</p>
                 </div>
                 <div className="progress-bar-outer">
-                    <Progress color={this.props.color} completed={this.props.percentage} />
+                    <Progress color={this.props.color} completed={percentage} />
                 </div>
             </div>
         )

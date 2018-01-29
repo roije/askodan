@@ -17,7 +17,7 @@ class PollConfigSelectComponent extends Component{
         //Destructure props object
         let { options } = this.props;
         //Iterate over options array and populate optionElements array with HTML option elements.
-        let optionElements = options.map(option => <option value={option.value}>{option.text}</option>)
+        let optionElements = options.map((option, index) => <option key={index} value={option.value}>{option.text}</option>)
         
         return (
             <div className="ip-browser-check">
