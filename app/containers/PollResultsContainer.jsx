@@ -19,8 +19,8 @@ class PollResultsContainer extends Component{
     componentDidMount() {
         let slug = this.props.match.params.slug;
         this.props.fetchPollResults(slug);
-
-        /** jQuery used for smooth scrolling */
+        
+        /** jQuery to smooth scroll to poll results div */
         $('html, body').animate({
             scrollTop: $('#poll-results').offset().top
         }, 'slow');

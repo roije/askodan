@@ -8,7 +8,13 @@ import PollFormComponent from '../components/new-poll-components/PollFormCompone
 import { connect } from 'react-redux'
 
 //Redux actions
-import { updateTitle, updatePollOption, lastFieldFocused, savePoll, removeField, updateConfig } from '../redux/modules/newPoll/newPoll-actions';
+import { updateTitle, 
+    updatePollOption, 
+    lastFieldFocused, 
+    savePoll, 
+    removeField, 
+    updateConfig, 
+    setTitleError } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -33,6 +39,8 @@ class NewPollContainer extends Component{
                     updateIpBrowserConfig={this.props.updateIpBrowserConfig}
                     updateConfig={this.props.updateConfig}
                     history={this.props.history}
+                    setTitleError={this.props.setTitleError}
+                    titleError={this.props.titleError}
                 />
             </div>
         )
@@ -58,6 +66,9 @@ const mapDispatchToProps = dispatch => {
         },
         updateConfig: (configType, value) => {
             dispatch(updateConfig(configType, value))
+        },
+        setTitleError: () => {
+            dispatch(setTitleError())
         }
     }
 }
@@ -67,7 +78,8 @@ const mapStateToProps = state => {
         title: state.newPollReducer.title,
         pollOptions: state.newPollReducer.pollOptions,
         pollConfigs: state.newPollReducer.pollConfigs,
-        ipBrowserConfigSelected: state.newPollReducer.ipBrowserConfigSelected   
+        ipBrowserConfigSelected: state.newPollReducer.ipBrowserConfigSelected,
+        titleError: state.newPollReducer.titleError  
     }
 }
 

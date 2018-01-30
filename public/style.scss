@@ -80,12 +80,21 @@ body{
 }
  /* label focus color */
  .input-field input[type=text]:focus + label {
-    color: $primary-blue !important;
+    color: $primary-blue !important; 
+
+    &.error {
+        color: red !important;
+    }
 }
 /* label underline focus color */
   .input-field input[type=text]:focus {
     border-bottom: 1px solid $primary-blue !important;
     box-shadow: 0 1px 0 0 $primary-blue !important;
+
+    &.error{
+        border-bottom: 1px solid red !important;
+        box-shadow: 0 1px 0 0 red !important;
+    }
 }
 
 .poll-option-paragraph{
@@ -150,8 +159,10 @@ body{
 
 .refresh-button-container{
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+    justify-content: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f1f1;
 
     button{
         font-size: 12px;
@@ -173,6 +184,11 @@ body{
             background-color: $primary-blue;
         }
     }
+}
+
+.error-message{
+    color: red; 
+    margin-bottom: 15px;
 }
 
 @media (min-width: 768px) {

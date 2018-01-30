@@ -33,7 +33,7 @@ module.exports = {
                      * Then a helper method is used to create a bulk of inserts, because the poll options could be many
                      */
                     let pollId = results.insertId;
-                    let pollOptionsBulk = pollUtils.buildPollOptionBulk(poll.pollOptions, pollId);
+                    let pollOptionsBulk = pollUtils.buildPollOptionBulk(poll.pollOptionsToSave, pollId);
                     connection.query("insert into poll_options (poll_value, poll_id) values ?", [pollOptionsBulk], (err, results, fields) => {
                         if(err) {
                             return connection.rollback(() => {

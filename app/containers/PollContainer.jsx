@@ -34,6 +34,7 @@ class PollContainer extends Component{
                     slug={this.props.match.params.slug}
                     showResults={this.props.showResults}
                     pollCheckClicked={this.props.pollCheckClicked}
+                    showing={this.props.showing}
                 /> 
                 {resultsComponent}
             </div>

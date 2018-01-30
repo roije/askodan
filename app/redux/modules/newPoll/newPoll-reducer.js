@@ -11,6 +11,7 @@ import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
 import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
+import { TITLE_ERROR } from './newPoll-constants';
 
 
 const initialState = {
@@ -32,7 +33,9 @@ const initialState = {
         ]
     },
     ipBrowserConfigSelected: 1,
-    saving: false
+    saving: false,
+    maxFields: 20,
+    titleError: false
 };
 
 export default (state = initialState, action) => {
@@ -96,6 +99,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 saving: false
+            }
+        case TITLE_ERROR: 
+            return {
+                ...state,
+                titleError: true
             }
         default:
             return state;

@@ -25,7 +25,13 @@ class PollComponent extends Component {
 
     onShowResults() {
         this.props.showResults();
-        console.log('Show results')
+
+        /** jQuery to smooth scroll to poll results div */
+        if(this.props.showing) {
+            $('html, body').animate({
+                scrollTop: $('#poll-results').offset().top
+            }, 'slow');
+        }
     }
 
     render(){

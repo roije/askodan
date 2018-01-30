@@ -23,9 +23,6 @@ class PollResultsComponent extends Component{
             <div id="poll-results" className="poll-form-component">
                 <div className="card">
                     <div className="poll-card-container">
-                        <div className="refresh-button-container">
-                            <button onClick={this.onRefresh} className="btn blue">Dagfør<i className={"fa fa-refresh " + (this.props.fetching ? "fa-spin" : '')} aria-hidden="true"></i></button>
-                        </div>
                         <ResultsBarsHolderComponent results={this.props.results}/>
                         <TabsComponent 
                             chartTabSelected={this.props.chartTabSelected}
@@ -34,6 +31,9 @@ class PollResultsComponent extends Component{
                             activeTab={this.props.activeTab}
                             results={this.props.results}
                         />
+                        <div className="refresh-button-container">
+                            <button onClick={this.onRefresh} className="btn blue">Dagfør<i className={"fa fa-refresh " + (this.props.fetching ? "fa-spin" : '')} aria-hidden="true"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

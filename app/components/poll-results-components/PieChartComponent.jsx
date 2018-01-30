@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
+import 'chart.piecelabel.js';
 
 import colors from './colors';
 
@@ -30,6 +31,16 @@ const PieChartComponent = (props) => {
                 fontSize: 0
             }
         },
+        pieceLabel: {
+            // precision for percentage, default is 0
+            precision: 0,
+            // font size, default is defaultFontSize
+            fontSize: 14,
+            // font color, default is '#fff'
+            fontColor: '#fff',
+            // font family, default is defaultFontFamily
+            fontFamily: "'Raleway', sans-serif'"
+        }
     }
     return(
         <Pie data={data} options={options}/>

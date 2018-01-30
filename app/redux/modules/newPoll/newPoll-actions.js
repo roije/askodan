@@ -9,7 +9,7 @@ import { RESET_LAST } from './newPoll-constants';
 import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
 import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
-
+import { TITLE_ERROR } from './newPoll-constants';
 
 /////////////////////UPDATE POLL TITLE////////////////////////
 
@@ -50,11 +50,14 @@ const addPollOption = () => {
 }
 
 export const lastFieldFocused = (index) => {
-    return function (dispatch) { 
+    return function (dispatch, getState) { 
         //Set all the options to have last as false
         dispatch(resetLast())
         //Add the new field. Last is set to true when object is created.
-        dispatch(addPollOption())
+        let { pollOptions, maxFields } = getState().newPollReducer;
+        if(pollOptions.length < maxFields) {
+            dispatch(addPollOption())
+        }
     }
 }
 
@@ -130,7 +133,20 @@ export const savePoll = (callback) => {
     return (dispatch, getState) => { 
         dispatch(savePollStart())
         var newPollReducer =  getState().newPollReducer
-        var pollOptions = newPollReducer.pollOptions.slice(0, -1);
+        let { pollOptions, maxFields } = newPollReducer;
+
+        /**  If the poll options length is less that the maximum fields of 20 remove the last field*/
+        if(pollOptions.length !== maxFields) {
+            pollOptions = newPollReducer.pollOptions.slice(0, -1);
+        }
+
+        /** Iterate over poll options and only add the options where value isn't empty to the array to save */
+        let pollOptionsToSave = []
+        pollOptions.map((option, index) => {
+            if(option.value !== "") {
+                pollOptionsToSave.push(option);
+            }
+        })
         var pollGeneralConfigs = newPollReducer.pollConfigs.generalVotingConfigs;
         var ipBrowserConfigSelected = newPollReducer.ipBrowserConfigSelected;
         var title = newPollReducer.title;
@@ -141,7 +157,7 @@ export const savePoll = (callback) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                pollOptions,
+                pollOptionsToSave,
                 title,
                 pollGeneralConfigs,
                 ipBrowserConfigSelected
@@ -155,3 +171,13 @@ export const savePoll = (callback) => {
     }
 }
 ////////////////////////////////////////////////////////////////////////
+
+////////////////////////TITLE ERROR////////////////////////////////////
+
+export const setTitleError = () => {
+    return {
+        type: TITLE_ERROR 
+    }
+}
+
+//////////////////////////////////////////////////////////////////////

@@ -22,7 +22,6 @@ class NewPollOptionFieldComponent extends Component {
         var index = Number(event.target.parentNode.id);
         if(isLast) {
             this.props.lastFieldFocused(index);
-            //console.log('Add new field')
         }
     }
 
