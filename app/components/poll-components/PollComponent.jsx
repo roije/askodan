@@ -19,7 +19,8 @@ class PollComponent extends Component {
 
     onClickSaveVote() {
         let multiple_answers = this.props.poll.multiple_answers;
-        multiple_answers ? this.props.saveVotes() : this.props.saveVote();
+        multiple_answers ? this.props.saveVotes((data) => this.props.showResults()) : 
+            this.props.saveVote((data) => this.props.showResults());
         
     }
 

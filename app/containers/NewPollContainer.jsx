@@ -14,7 +14,8 @@ import { updateTitle,
     savePoll, 
     removeField, 
     updateConfig, 
-    setTitleError } from '../redux/modules/newPoll/newPoll-actions';
+    setTitleError,
+    resetTitleError } from '../redux/modules/newPoll/newPoll-actions';
 
 
 class NewPollContainer extends Component{
@@ -41,6 +42,7 @@ class NewPollContainer extends Component{
                     history={this.props.history}
                     setTitleError={this.props.setTitleError}
                     titleError={this.props.titleError}
+                    resetTitleError={this.props.resetTitleError}
                 />
             </div>
         )
@@ -69,6 +71,9 @@ const mapDispatchToProps = dispatch => {
         },
         setTitleError: () => {
             dispatch(setTitleError())
+        },
+        resetTitleError: () => {
+            dispatch(resetTitleError())
         }
     }
 }

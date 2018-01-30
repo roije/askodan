@@ -12,6 +12,7 @@ class PollFormComponent extends Component {
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onSavePoll = this.onSavePoll.bind(this);
         this.onTitleFocusLeave = this.onTitleFocusLeave.bind(this);
+        this.onTitleFocus = this.onTitleFocus.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +23,13 @@ class PollFormComponent extends Component {
         this.props.updateTitle(e.target.value);
     }
 
+    //resetTitleError
+    onTitleFocus() {
+        if(this.props.titleError) {
+            this.props.resetTitleError();
+        }
+    }
+
     onTitleFocusLeave(e) {
         if(this.props.title === "") {
             this.props.setTitleError();
@@ -30,9 +38,7 @@ class PollFormComponent extends Component {
     }
  
     onSavePoll(e) {
-        if(this.props.title == "") {
-            console.log('No title')
-        } else {
+        if(!this.props.titleError) {
             this.props.savePoll((data) => {
                 //Redirect to new poll
                 this.props.history.push('/poll/' + data.slug)
@@ -57,7 +63,7 @@ class PollFormComponent extends Component {
                     key={ index } />;
         })
 
-        let errorMessage = this.props.titleError ? <ErrorMessageComponent message="Vinarliga fyll teigin omanfyri"/> : null;
+        let errorMessage = this.props.titleError ? <ErrorMessageComponent message="Vinarliga minst til at seta ein spurning."/> : null;
 
         return(
             <div className="poll-form-component">
@@ -70,9 +76,11 @@ class PollFormComponent extends Component {
                                         ref={(input) => { this.titleInput = input; }} 
                                         onChange={this.onTitleChange} id="field_poll_title" 
                                         type="text" 
+                                        onFocus={this.onTitleFocus}
                                         onBlur={this.onTitleFocusLeave}
+                                        className={(this.props.titleError ? "error" : "")}
                                         />
-                                <label  htmlFor="field_poll_title">Spurningur</label>
+                                <label htmlFor="field_poll_title" className={(this.props.titleError ? "error active" : "")}>Spurningur</label>
                             </div>
                         </div>
                         <div>

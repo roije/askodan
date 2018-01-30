@@ -34,7 +34,7 @@ const receiveResults = (results) => {
 export const fetchPollResults = (slug) => {
     return (dispatch) => {
         dispatch(fetchResultsStart());
-        fetch('http://localhost:3000/api/poll/' + slug + '/votes', {
+        fetch('http://localhost:8000/api/poll/' + slug + '/votes', {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

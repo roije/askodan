@@ -53,7 +53,7 @@ export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
         dispatch(fetchPollStart())
-        fetch('http://localhost:3000/poll/' + slug, {
+        fetch('http://localhost:8000/poll/' + slug, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -96,14 +96,14 @@ const saveVoteEnd = () => {
     }
 }
 
-export const saveVote = () => {
+export const saveVote = (callback) => {
     return (dispatch, getState) => {
         dispatch(saveVoteStart());
         let pollReducer = getState().pollReducer;
         let voteIndex = pollReducer.vote;
         let pollOption = pollReducer.poll.pollOptions[voteIndex];
         let pollId = pollReducer.poll.id;
-        fetch('http://localhost:3000/api/poll/vote', {
+        fetch('http://localhost:8000/api/poll/vote', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -115,8 +115,8 @@ export const saveVote = () => {
           }).then((response) => {
             response.json().then(function(data) {
                 // do something with your data
-                callback(data);
                 dispatch(saveVoteEnd());
+                callback(data);
               });
           })
     }
@@ -147,7 +147,7 @@ const saveVotesEnd = () => {
     }
 }
  
-export const saveVotes = () => {
+export const saveVotes = (callback) => {
     return (dispatch, getState) => {
         dispatch(saveVotesStart());
         let pollReducer = getState().pollReducer;
@@ -158,7 +158,7 @@ export const saveVotes = () => {
                 votes.push(pollOption);
             }
         });
-        fetch('http://localhost:3000/api/poll/votes', {
+        fetch('http://localhost:8000/api/poll/votes', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -170,8 +170,8 @@ export const saveVotes = () => {
           }).then((response) => {
             response.json().then(function(data) {
                 // do something with your data
-                callback(data);
                 dispatch(saveVotesEnd());
+                callback(data);
             });
         })
     }

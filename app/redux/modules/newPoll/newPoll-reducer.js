@@ -12,7 +12,7 @@ import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
 import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
 import { TITLE_ERROR } from './newPoll-constants';
-
+import { RESET_TITLE_ERROR} from './newPoll-constants'
 
 const initialState = {
     title : "",
@@ -104,6 +104,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 titleError: true
+            }
+        case RESET_TITLE_ERROR: 
+            return {
+                ...state,
+                titleError: false
             }
         default:
             return state;

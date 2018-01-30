@@ -10,6 +10,7 @@ import { SET_LAST_TRUE } from './newPoll-constants';
 import { UPDATE_IP_BROWSER_CONFIG } from './newPoll-constants';
 import { GENERAL_CONFIG_CHECK_CLICKED } from './newPoll-constants';
 import { TITLE_ERROR } from './newPoll-constants';
+import { RESET_TITLE_ERROR} from './newPoll-constants'
 
 /////////////////////UPDATE POLL TITLE////////////////////////
 
@@ -150,7 +151,7 @@ export const savePoll = (callback) => {
         var pollGeneralConfigs = newPollReducer.pollConfigs.generalVotingConfigs;
         var ipBrowserConfigSelected = newPollReducer.ipBrowserConfigSelected;
         var title = newPollReducer.title;
-        fetch('http://localhost:3000/api/poll', {
+        fetch('http://localhost:8000/api/poll', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -179,5 +180,12 @@ export const setTitleError = () => {
         type: TITLE_ERROR 
     }
 }
+
+export const resetTitleError = () => {
+    return {
+        type: RESET_TITLE_ERROR
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////////

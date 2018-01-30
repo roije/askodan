@@ -42,7 +42,7 @@ router.post('/api/poll/vote', (req, res) => {
         if(err) {
             console.log(err);
         }
-        console.log(data);
+        res.send({data});
     })
 })
 
@@ -52,7 +52,7 @@ router.post('/api/poll/votes', (req, res) => {
         if(err) {
             console.log(err)
         }
-        console.log(data);
+        res.send({data});
     })
 })
 

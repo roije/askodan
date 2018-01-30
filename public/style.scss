@@ -84,19 +84,36 @@ body{
 
     &.error {
         color: red !important;
+        border-bottom-color: red !important;
     }
 }
-/* label underline focus color */
-  .input-field input[type=text]:focus {
+/* label underline focus color 
+weird stuff. Must screw up at some point. Have an eye on this. Maybe fix something*/
+.input-field input[type=text]:focus {
     border-bottom: 1px solid $primary-blue !important;
     box-shadow: 0 1px 0 0 $primary-blue !important;
-
+    
     &.error{
         border-bottom: 1px solid red !important;
         box-shadow: 0 1px 0 0 red !important;
     }
 }
 
+.input-field input[type=text] + label {
+
+    &.error {
+        color: red;
+        border-bottom-color: red;
+    }
+}
+
+.input-field input[type=text] {
+
+    &.error {
+        border-bottom-color: red;
+    }
+}
+/***************************************************************** */
 .poll-option-paragraph{
     margin-top: 15px;
 

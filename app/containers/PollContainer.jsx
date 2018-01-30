@@ -50,11 +50,11 @@ const mapDispatchToProps = dispatch => {
         pollRadioOptionClicked: (index) => {
             dispatch(pollRadioOptionClicked(index))
         },
-        saveVote: () => {
-            dispatch(saveVote())
+        saveVote: (callback) => {
+            dispatch(saveVote(callback))
         },
-        saveVotes: () => {
-            dispatch(saveVotes())
+        saveVotes: (callback) => {
+            dispatch(saveVotes(callback))
         },
         showResults: () => {
             dispatch(showResults())
