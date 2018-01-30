@@ -9,14 +9,23 @@ class PollResultsComponent extends Component{
     
     constructor(props) {
         super(props)
+
+        this.onRefresh = this.onRefresh.bind(this);
+    }
+
+    onRefresh() {
+        this.props.fetchPollResults(this.props.slug);
     }
 
     render() {
-        console.log(this.props.results)
+
         return(
-            <div className="poll-form-component">
+            <div id="poll-results" className="poll-form-component">
                 <div className="card">
                     <div className="poll-card-container">
+                        <div className="refresh-button-container">
+                            <button onClick={this.onRefresh} className="btn blue">Dagfør<i className={"fa fa-refresh " + (this.props.fetching ? "fa-spin" : '')} aria-hidden="true"></i></button>
+                        </div>
                         <ResultsBarsHolderComponent results={this.props.results}/>
                         <TabsComponent 
                             chartTabSelected={this.props.chartTabSelected}

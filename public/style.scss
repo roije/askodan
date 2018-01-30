@@ -148,6 +148,20 @@ body{
     }
 }
 
+.refresh-button-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+    button{
+        font-size: 12px;
+        i{
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
+}
+
 .tabs-container{
     margin-top: 20px;
     .tabs{

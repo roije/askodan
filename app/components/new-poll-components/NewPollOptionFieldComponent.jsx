@@ -28,10 +28,7 @@ class NewPollOptionFieldComponent extends Component {
 
     onRemove(event) {
         var index = Number(event.target.parentNode.id);
-        console.log(event.target.parentNode)
-        console.log(index);
         var isLast = JSON.parse(event.target.parentNode.getAttribute('data-last'));
-        console.log(isLast)
         this.props.removeField(index, isLast)
     }
 

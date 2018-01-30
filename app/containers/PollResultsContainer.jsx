@@ -19,7 +19,11 @@ class PollResultsContainer extends Component{
     componentDidMount() {
         let slug = this.props.match.params.slug;
         this.props.fetchPollResults(slug);
-        console.log('RESULTS CONTAINER DID MOUNT');
+
+        /** jQuery used for smooth scrolling */
+        $('html, body').animate({
+            scrollTop: $('#poll-results').offset().top
+        }, 'slow');
     }
 
     render() {
@@ -29,6 +33,9 @@ class PollResultsContainer extends Component{
                 results={this.props.results}
                 chartTabSelected={this.props.chartTabSelected}
                 activeTab={this.props.activeTab}
+                slug={this.props.match.params.slug}
+                fetchPollResults={this.props.fetchPollResults}
+                fetching={this.props.fetching}
             />
         )
     }
@@ -49,7 +56,8 @@ const mapStateToProps = state => {
     return {
         showing: state.pollResultsReducer.showing,
         results: state.pollResultsReducer.results,
-        activeTab: state.pollResultsReducer.activeTab
+        activeTab: state.pollResultsReducer.activeTab,
+        fetching: state.pollResultsReducer.fetching
     }
 }
 
