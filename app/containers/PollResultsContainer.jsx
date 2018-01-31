@@ -7,7 +7,7 @@ import PollResultsComponent from '../components/poll-results-components/PollResu
 import { connect } from 'react-redux'
 
 //Redux actions
-import { showResults, fetchPollResults, chartTabSelected, endScrollingResults } from '../redux/modules/pollResults/pollResults-actions.js';
+import { showResults, fetchPollResults, chartTabSelected } from '../redux/modules/pollResults/pollResults-actions.js';
 
 class PollResultsContainer extends Component{
     constructor(props) {
@@ -37,8 +37,6 @@ class PollResultsContainer extends Component{
                 slug={this.props.match.params.slug}
                 fetchPollResults={this.props.fetchPollResults}
                 fetching={this.props.fetching}
-                scroll={this.props.scroll}
-                endScrollingResults={this.props.endScrollingResults}
             />
         )
     }
@@ -52,9 +50,6 @@ const mapDispatchToProps = dispatch => {
         chartTabSelected: (tab) => {
             dispatch(chartTabSelected(tab))
         },
-        endScrollingResults: () => {
-            dispatch(endScrollingResults())
-        }
     }
 }
 

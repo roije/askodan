@@ -64,18 +64,3 @@ export const chartTabSelected = (tab) => {
         tab
     }
 }
-///////////////////////////
-
-export const startScrollingResults = () => {
-    return {
-        type: SCROLL_RESULTS_START
-    }
-}
-
-export const endScrollingResults = () => {
-    return {
-        type: SCROLL_RESULTS_END
-    }
-}
-
-//////////////////////////

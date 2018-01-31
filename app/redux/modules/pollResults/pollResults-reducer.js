@@ -27,16 +27,6 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, { results: action.results})
         case TAB_CHART_SELECTED: 
             return Object.assign({}, state, { activeTab: action.tab});
-        case SCROLL_RESULTS_START:
-            return {
-                ...state,
-                scroll: false
-            }
-        case SCROLL_RESULTS_END:
-            return {
-                ...state,
-                scroll: true
-            }
         default:
             return state;
     }

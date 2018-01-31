@@ -19,7 +19,7 @@ import { fetchPoll,
     saveVotes,
     setVoteError,
     removeVoteError } from '../redux/modules/poll/poll-actions';
-import { showResults, startScrollingResults } from '../redux/modules/pollResults/pollResults-actions';
+import { showResults } from '../redux/modules/pollResults/pollResults-actions';
 
 class PollContainer extends Component{
     componentDidMount() {
@@ -42,7 +42,6 @@ class PollContainer extends Component{
                     showResults={this.props.showResults}
                     pollCheckClicked={this.props.pollCheckClicked}
                     showing={this.props.showing}
-                    startScrollingResults={this.props.startScrollingResults}
                     vote={this.props.vote}
                     votes={this.props.votes}
                     setVoteError={this.props.setVoteError}
@@ -74,9 +73,6 @@ const mapDispatchToProps = dispatch => {
         },
         pollCheckClicked: (index) => {
             dispatch(pollCheckClicked(index))
-        },
-        startScrollingResults: () => {
-            dispatch(startScrollingResults())
         },
         setVoteError: () => {
             dispatch(setVoteError())

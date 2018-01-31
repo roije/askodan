@@ -15,6 +15,7 @@ class PollResultsComponent extends Component{
     }
 
     scrollIntoView() {
+        //https://stackoverflow.com/questions/14613498/how-to-prevent-this-strange-jquery-animate-lag
         //Stop fixes weird lag after animation. 
         $('html, body').stop().animate({
             scrollTop: $(this.$resultsDiv).offset().top
@@ -22,16 +23,8 @@ class PollResultsComponent extends Component{
     }
 
     componentDidMount() {
-        console.log(this.props)
         this.$resultsDiv  = $(this.resultsDiv);
         this.scrollIntoView()
-    }
-
-    componentWillReceiveProps() {
-        if(this.props.scroll) {
-            this.scrollIntoView()
-            this.props.endScrollingResults();
-        }
     }
   
     onRefresh() {
