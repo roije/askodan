@@ -8,7 +8,9 @@ import {
     SAVE_VOTE_START,
     SAVE_VOTE_END,
     SAVE_VOTES_START,
-    SAVE_VOTES_END
+    SAVE_VOTES_END,
+    SET_VOTE_ERROR,
+    REMOVE_VOTE_ERROR
 } from './poll-constants';
 
 ////////////////////////FETCH POLL//////////////////////////
@@ -178,3 +180,17 @@ export const saveVotes = (callback) => {
 }
 
 //////////////////////////////////////////////////////
+
+///////////////////VOTE ERROR////////////////////////
+
+export const setVoteError = () => {
+    return {
+        type: SET_VOTE_ERROR
+    }
+}
+
+export const removeVoteError = () => {
+    return {
+        type: REMOVE_VOTE_ERROR
+    }
+}

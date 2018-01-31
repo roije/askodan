@@ -10,11 +10,9 @@ class PollCheckOptionComponent extends Component{
     }
 
     onCheckClick(e) {
-        console.log(e.target);
+        this.props.removeVoteError()
         let index = Number(e.target.id.split('-')[1]);
-        console.log(index);
         this.props.pollCheckClicked(index);
-        //this.props.pollRadioOptionClicked(index);
     } 
 
     render() {

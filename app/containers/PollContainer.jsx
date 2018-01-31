@@ -12,11 +12,18 @@ import PollResultsContainer from './PollResultsContainer.jsx';
 import { connect } from 'react-redux'
 
 //Redux actions
-import { fetchPoll, pollRadioOptionClicked, saveVote, pollCheckClicked, saveVotes } from '../redux/modules/poll/poll-actions';
-import { showResults } from '../redux/modules/pollResults/pollResults-actions';
+import { fetchPoll, 
+    pollRadioOptionClicked, 
+    saveVote, 
+    pollCheckClicked, 
+    saveVotes,
+    setVoteError,
+    removeVoteError } from '../redux/modules/poll/poll-actions';
+import { showResults, startScrollingResults } from '../redux/modules/pollResults/pollResults-actions';
 
 class PollContainer extends Component{
     componentDidMount() {
+        console.log(this.props)
         let slug = this.props.match.params.slug;
         this.props.fetchPoll(slug);
     }
@@ -35,6 +42,12 @@ class PollContainer extends Component{
                     showResults={this.props.showResults}
                     pollCheckClicked={this.props.pollCheckClicked}
                     showing={this.props.showing}
+                    startScrollingResults={this.props.startScrollingResults}
+                    vote={this.props.vote}
+                    votes={this.props.votes}
+                    setVoteError={this.props.setVoteError}
+                    removeVoteError={this.props.removeVoteError}
+                    voteError={this.props.voteError}
                 /> 
                 {resultsComponent}
             </div>
@@ -61,6 +74,15 @@ const mapDispatchToProps = dispatch => {
         },
         pollCheckClicked: (index) => {
             dispatch(pollCheckClicked(index))
+        },
+        startScrollingResults: () => {
+            dispatch(startScrollingResults())
+        },
+        setVoteError: () => {
+            dispatch(setVoteError())
+        },
+        removeVoteError: () => {
+            dispatch(removeVoteError())
         }
     }
 }
@@ -68,7 +90,10 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         poll: state.pollReducer.poll,
-        showing: state.pollResultsReducer.showing
+        showing: state.pollResultsReducer.showing,
+        vote: state.pollReducer.vote,
+        votes: state.pollReducer.votes,
+        voteError: state.pollReducer.voteError
     }
 }
 

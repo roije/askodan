@@ -16,6 +16,7 @@ const PollOptionsHolderComponent = (props) => {
                 key={index}
                 id={option.id}
                 pollCheckClicked={props.pollCheckClicked}
+                removeVoteError={props.removeVoteError}
             />  : 
             <PollRadioOptionComponent 
                 text={option.poll_value}
@@ -23,6 +24,7 @@ const PollOptionsHolderComponent = (props) => {
                 key={index}
                 id={option.id}
                 pollRadioOptionClicked={props.pollRadioOptionClicked}
+                removeVoteError={props.removeVoteError}
             /> 
             return element;
         }) 

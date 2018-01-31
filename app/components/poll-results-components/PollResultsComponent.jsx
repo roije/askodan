@@ -11,8 +11,28 @@ class PollResultsComponent extends Component{
         super(props)
 
         this.onRefresh = this.onRefresh.bind(this);
+        this.scrollIntoView = this.scrollIntoView.bind(this);
     }
 
+    scrollIntoView() {
+        $('html, body').animate({
+            scrollTop: $(this.$resultsDiv).offset().top
+        }, 'slow');
+    }
+
+    componentDidMount() {
+        console.log(this.props)
+        this.$resultsDiv  = $(this.resultsDiv);
+        this.scrollIntoView()
+    }
+
+    componentWillReceiveProps() {
+        if(this.props.scroll) {
+            this.scrollIntoView()
+            this.props.endScrollingResults();
+        }
+    }
+  
     onRefresh() {
         this.props.fetchPollResults(this.props.slug);
     }
@@ -20,7 +40,7 @@ class PollResultsComponent extends Component{
     render() {
 
         return(
-            <div id="poll-results" className="poll-form-component">
+            <div ref={el => this.resultsDiv = el} className="poll-form-component">
                 <div className="card">
                     <div className="poll-card-container">
                         <ResultsBarsHolderComponent results={this.props.results}/>

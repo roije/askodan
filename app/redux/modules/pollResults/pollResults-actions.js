@@ -3,7 +3,9 @@ import {
     FETCH_RESULTS_START,
     RECEIVE_RESULTS,
     FETCH_RESULTS_END,
-    TAB_CHART_SELECTED
+    TAB_CHART_SELECTED,
+    SCROLL_RESULTS_START,
+    SCROLL_RESULTS_END
 } from './pollResults-constants';
 
 //////////////FETCHING POLL RESULTS////////////////////
@@ -62,3 +64,18 @@ export const chartTabSelected = (tab) => {
         tab
     }
 }
+///////////////////////////
+
+export const startScrollingResults = () => {
+    return {
+        type: SCROLL_RESULTS_START
+    }
+}
+
+export const endScrollingResults = () => {
+    return {
+        type: SCROLL_RESULTS_END
+    }
+}
+
+//////////////////////////

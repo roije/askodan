@@ -7,7 +7,7 @@ import PollResultsComponent from '../components/poll-results-components/PollResu
 import { connect } from 'react-redux'
 
 //Redux actions
-import { showResults, fetchPollResults, chartTabSelected } from '../redux/modules/pollResults/pollResults-actions.js';
+import { showResults, fetchPollResults, chartTabSelected, endScrollingResults } from '../redux/modules/pollResults/pollResults-actions.js';
 
 class PollResultsContainer extends Component{
     constructor(props) {
@@ -19,11 +19,12 @@ class PollResultsContainer extends Component{
     componentDidMount() {
         let slug = this.props.match.params.slug;
         this.props.fetchPollResults(slug);
-        
-        /** jQuery to smooth scroll to poll results div */
+        /*
+        this.resultsDiv = $(this.resultsDiv);
         $('html, body').animate({
-            scrollTop: $('#poll-results').offset().top
+            scrollTop: $(this.resultsDiv).offset().top
         }, 'slow');
+        */
     }
 
     render() {
@@ -36,6 +37,8 @@ class PollResultsContainer extends Component{
                 slug={this.props.match.params.slug}
                 fetchPollResults={this.props.fetchPollResults}
                 fetching={this.props.fetching}
+                scroll={this.props.scroll}
+                endScrollingResults={this.props.endScrollingResults}
             />
         )
     }
@@ -48,6 +51,9 @@ const mapDispatchToProps = dispatch => {
         },
         chartTabSelected: (tab) => {
             dispatch(chartTabSelected(tab))
+        },
+        endScrollingResults: () => {
+            dispatch(endScrollingResults())
         }
     }
 }
@@ -57,7 +63,8 @@ const mapStateToProps = state => {
         showing: state.pollResultsReducer.showing,
         results: state.pollResultsReducer.results,
         activeTab: state.pollResultsReducer.activeTab,
-        fetching: state.pollResultsReducer.fetching
+        fetching: state.pollResultsReducer.fetching,
+        scroll: state.pollResultsReducer.scroll
     }
 }
 

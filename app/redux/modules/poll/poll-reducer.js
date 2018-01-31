@@ -8,7 +8,9 @@ import {
     CREATE_POLL_CHECK_LIST,
     POLL_CHECK_CLICKED,
     SAVE_VOTES_START,
-    SAVE_VOTES_END
+    SAVE_VOTES_END,
+    SET_VOTE_ERROR,
+    REMOVE_VOTE_ERROR
  } from './poll-constants';
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
     vote: null,
     votes: [],
     saving: false,
-    pollCheckList: []
+    pollCheckList: [],
+    voteError: false
 };
 
 export default (state = initialState, action) => {
@@ -45,6 +48,16 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, { saving: true })
         case SAVE_VOTES_END:
             return Object.assign({}, state, { saving: false })
+        case SET_VOTE_ERROR: 
+            return {
+                ...state,
+                voteError: true
+            }
+        case REMOVE_VOTE_ERROR: 
+            return {
+                ...state,
+                voteError: false
+            }
         default:
             return state;
     }

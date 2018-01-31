@@ -9,6 +9,7 @@ class PollRadioOptionComponent extends Component{
     }
 
     onRadioClick(e) {
+        this.props.removeVoteError()
         let index = Number(e.target.id.split('-')[1]);
         this.props.pollRadioOptionClicked(index);
     } 
