@@ -15,7 +15,8 @@ class PollResultsComponent extends Component{
     }
 
     scrollIntoView() {
-        $('html, body').animate({
+        //Stop fixes weird lag after animation. 
+        $('html, body').stop().animate({
             scrollTop: $(this.$resultsDiv).offset().top
         }, 'slow');
     }
