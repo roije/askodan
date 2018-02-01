@@ -17,6 +17,7 @@ const PollOptionsHolderComponent = (props) => {
                 id={option.id}
                 pollCheckClicked={props.pollCheckClicked}
                 removeVoteError={props.removeVoteError}
+                pollCheckClickedBeta={props.pollCheckClickedBeta}
             />  : 
             <PollRadioOptionComponent 
                 text={option.poll_value}

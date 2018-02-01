@@ -47,7 +47,7 @@ router.post('/api/poll/vote', (req, res) => {
 })
 
 router.post('/api/poll/votes', (req, res) => {
-    let votes = req.body.votes;
+    let votes = req.body.votesSave;
     pollController.saveVotes(votes, (err, data) => {
         if(err) {
             console.log(err)

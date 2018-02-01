@@ -18,7 +18,8 @@ import { fetchPoll,
     pollCheckClicked, 
     saveVotes,
     setVoteError,
-    removeVoteError } from '../redux/modules/poll/poll-actions';
+    removeVoteError,
+    pollCheckClickedBeta} from '../redux/modules/poll/poll-actions';
 import { showResults } from '../redux/modules/pollResults/pollResults-actions';
 
 class PollContainer extends Component{
@@ -47,6 +48,7 @@ class PollContainer extends Component{
                     setVoteError={this.props.setVoteError}
                     removeVoteError={this.props.removeVoteError}
                     voteError={this.props.voteError}
+                    pollCheckClickedBeta={this.props.pollCheckClickedBeta}
                 /> 
                 {resultsComponent}
             </div>
@@ -73,6 +75,9 @@ const mapDispatchToProps = dispatch => {
         },
         pollCheckClicked: (index) => {
             dispatch(pollCheckClicked(index))
+        },
+        pollCheckClickedBeta: (index) => {
+            dispatch(pollCheckClickedBeta(index))
         },
         setVoteError: () => {
             dispatch(setVoteError())

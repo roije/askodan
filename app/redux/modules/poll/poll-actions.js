@@ -10,7 +10,8 @@ import {
     SAVE_VOTES_START,
     SAVE_VOTES_END,
     SET_VOTE_ERROR,
-    REMOVE_VOTE_ERROR
+    REMOVE_VOTE_ERROR,
+    POLL_CHECK_CLICKED_BETA
 } from './poll-constants';
 
 ////////////////////////FETCH POLL//////////////////////////
@@ -34,6 +35,7 @@ const receivePoll = (poll) => {
     }
 }
 
+/*
 const createPollCheckList = (checkList) => {
     return {
         type: CREATE_POLL_CHECK_LIST,
@@ -50,6 +52,7 @@ const buildPollCheckList = (pollOptions) => {
         dispatch(createPollCheckList(checkList));
     }
 }
+*/
 
 export const fetchPoll = (slug) => {
     return function (dispatch) { 
@@ -66,9 +69,11 @@ export const fetchPoll = (slug) => {
         .then((data) => {
             // do something with your data
             dispatch(receivePoll(data))
+            /*
             if(data.multiple_answers) {
                 dispatch(buildPollCheckList(data.pollOptions));
             }
+            */
             dispatch(fetchPollEnd())
         });   
     }
@@ -83,7 +88,24 @@ export const pollRadioOptionClicked = (index) => {
     }
 }
 
-//////////////////////////////////////////////////
+
+///////////////////POLL CHECK CLICKED//////////////////
+
+export const pollCheckClicked = (index) => {
+    return {
+        type: POLL_CHECK_CLICKED,
+        index
+    }
+} 
+
+export const pollCheckClickedBeta = (index) => {
+    return {
+        type: POLL_CHECK_CLICKED_BETA,
+        index
+    }    
+}
+//////////////////////////////////////////////////////
+
 
 ////////////////SAVE ONE ANSWER VOTE/////////////
 
@@ -124,17 +146,6 @@ export const saveVote = (callback) => {
     }
 }
 
-///////////////////POLL CHECK CLICKED//////////////////
-
-export const pollCheckClicked = (index) => {
-    return {
-        type: POLL_CHECK_CLICKED,
-        index
-    }
-} 
-
-//////////////////////////////////////////////////////
-
 ///////////////SAVE MULTIPLE ANSWER VOTE//////////////
 
 const saveVotesStart = () => {
@@ -153,13 +164,16 @@ export const saveVotes = (callback) => {
     return (dispatch, getState) => {
         dispatch(saveVotesStart());
         let pollReducer = getState().pollReducer;
-        let votes = []
-        pollReducer.pollCheckList.map((option, i) => {
-            if(option.checked) {
-                let pollOption = pollReducer.poll.pollOptions[i];
-                votes.push(pollOption);
-            }
-        });
+        let votes = pollReducer.votes.sort();
+        let votesSave = [];
+        /** Get all options from poll options at the index that is in the votes array 
+         * and push it to the votesSave array which will be passed into the ajax request.
+        */
+        for(let i = 0; i < votes.length; i++) {
+            let voteIndex = votes[i];
+            let option = pollReducer.poll.pollOptions[voteIndex];
+            votesSave.push(option);
+        }
         fetch('http://localhost:8000/api/poll/votes', {
             method: 'post',
             headers: {
@@ -167,7 +181,7 @@ export const saveVotes = (callback) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                votes
+                votesSave
             })
           }).then((response) => {
             response.json().then(function(data) {

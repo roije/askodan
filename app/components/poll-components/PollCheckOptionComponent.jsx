@@ -13,6 +13,7 @@ class PollCheckOptionComponent extends Component{
         this.props.removeVoteError()
         let index = Number(e.target.id.split('-')[1]);
         this.props.pollCheckClicked(index);
+        this.props.pollCheckClickedBeta(index);
     } 
 
     render() {

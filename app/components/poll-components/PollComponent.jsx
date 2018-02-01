@@ -22,35 +22,10 @@ class PollComponent extends Component {
     onClickSaveVote() {
         let multiple_answers = this.props.poll.multiple_answers;
         multiple_answers ? this.props.saveVotes((data) => this.props.showResults()) : this.props.saveVote((data) => this.props.showResults());
-
-        /*
-        if(multiple_answers) {
-            if(this.props.votes.length === 0) {
-                this.props.setVoteError();
-            }
-            else {
-                this.props.saveVotes((data) => this.props.showResults())
-            }
-        } 
-
-        if(!multiple_answers) {
-            if(!this.props.vote) {
-                this.props.setVoteError();    
-            }
-            else {
-                this.props.saveVote((data) => this.props.showResults());     
-            }
-        }
-        */
     }
 
     onShowResults() {
         this.props.showResults();
-
-        if(this.props.showing) {
-            this.props.startScrollingResults();
-        }
-                
     }
 
     render(){
@@ -71,6 +46,7 @@ class PollComponent extends Component {
                             pollRadioOptionClicked={this.props.pollRadioOptionClicked}
                             pollCheckClicked={this.props.pollCheckClicked}
                             removeVoteError={this.props.removeVoteError}
+                            pollCheckClickedBeta={this.props.pollCheckClickedBeta}
                         />
                         {errorMessage}
                         <div className="vote-button-container">
