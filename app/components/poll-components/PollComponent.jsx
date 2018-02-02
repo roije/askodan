@@ -20,8 +20,16 @@ class PollComponent extends Component {
     }
 
     onClickSaveVote() {
-        let multiple_answers = this.props.poll.multiple_answers;
-        multiple_answers ? this.props.saveVotes((data) => this.props.showResults()) : this.props.saveVote((data) => this.props.showResults());
+        if(!this.props.vote && this.props.votes.length == 0) {
+            this.props.setVoteError();
+        }
+        else {
+            let multiple_answers = this.props.poll.multiple_answers;
+                                /* If there are multiple, invoke the saveVotes action*/
+            multiple_answers ?  this.props.saveVotes((data) => this.props.showResults()) :
+                                /* If only one vote allowed, then invoke the saveVote action*/ 
+                                this.props.saveVote((data) => this.props.showResults());
+        }
     }
 
     onShowResults() {
