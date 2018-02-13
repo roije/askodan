@@ -7,6 +7,8 @@ var pool  = mysql.createPool({
   database : 'askodan'
 });
 
+var config = require('./db_config.json')[process.env.NODE_ENV || 'development'];
+
 module.exports = {
     query: (sqlQuery, values, callback) => {
         pool.getConnection((err, connection)  => {

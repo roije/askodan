@@ -1,0 +1,16 @@
+{
+    "development" : {
+        "DB_HOST"     : "localhost",
+        "DB_PORT" : "3306",
+        "DB_USER"     : "root",
+        "DB_PASSWORD" : "root",
+        "DB_DATABASE" : "askodan"
+    },
+    "production" : {
+        "DB_HOST"     : "localhost",
+        "DB_PORT" : "3306",
+        "DB_USER"     : "roije",
+        "DB_PASSWORD" : "123kaffe",
+        "DB_DATABASE" : "askodan"
+    }
+}

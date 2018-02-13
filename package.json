@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
-    "express-server": "nodemon ./server/index.js",
+    "dev-express-server": "nodemon ./server/index.js",
+    "prod-express-server": "set NODE_ENV=production&& nodemon ./server/index.js",
     "build": "./node_modules/.bin/webpack"
   },
   "author": "",
