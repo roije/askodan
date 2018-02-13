@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin')
 
 var BUILD_DIR = path.resolve(__dirname, 'public');
 var APP_DIR = path.resolve(__dirname, 'app');
@@ -10,7 +11,6 @@ module.exports = {
     output: {
         path: BUILD_DIR,
         filename: 'bundle.js',
-        publicPath: '/'
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -44,6 +44,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        new HtmlPlugin({
+            template: 'public/index.html'
+          })
     ]
 };

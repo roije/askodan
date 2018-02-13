@@ -2,6 +2,7 @@
 let express = require('express');
 let app = express();
 var cors = require('cors')
+let path = require('path');
 
 let bodyParser = require('body-parser');
 
@@ -17,6 +18,13 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 let routes = require('./api/combinedRoutes');
 app.use(routes);
+
+app.use(express.static(__dirname + '/../public'));
+
+app.get('/', function (req, res) {
+    console.log(__dirname)
+    res.sendfile(__dirname + '/../public/index.html');
+});
 
 app.listen(port, (err) => {
     if(err) {

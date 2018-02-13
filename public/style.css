@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px; }
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+
+body {
+  height: 100vh;
+  background-color: #f1f1f1;
+  color: #373D3F;
+  font-family: 'Raleway', sans-serif; }
+
+.title-component {
+  display: flex;
+  justify-content: center; }
+  .title-component img {
+    max-width: 300px;
+    max-height: 100px;
+    margin-bottom: 30px; }
+
+.poll-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.poll-card-container {
+  display: flex;
+  flex-direction: column;
+  padding: 50px; }
+
+#field_poll_title {
+  font-size: 30px; }
+
+.poll-form-component {
+  width: 60%; }
+
+.save-button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; }
+
+.vote-button-container, .show-results-button-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; }
+  .vote-button-container p, .show-results-button-container p {
+    color: #1E8BC3;
+    cursor: pointer; }
+    .vote-button-container p:hover, .show-results-button-container p:hover {
+      cursor: pointer;
+      color: #1b7daf; }
+
+.input-field {
+  position: relative;
+  padding-right: 30px; }
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #1E8BC3 !important; }
+  .input-field input[type=text]:focus + label.error {
+    color: red !important;
+    border-bottom-color: red !important; }
+
+/* label underline focus color 
+weird stuff. Must screw up at some point. Have an eye on this. Maybe fix something*/
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #1E8BC3 !important;
+  box-shadow: 0 1px 0 0 #1E8BC3 !important; }
+  .input-field input[type=text]:focus.error {
+    border-bottom: 1px solid red !important;
+    box-shadow: 0 1px 0 0 red !important; }
+
+.input-field input[type=text] + label.error {
+  color: red;
+  border-bottom-color: red; }
+
+.input-field input[type=text].error {
+  border-bottom-color: red; }
+
+/***************************************************************** */
+.poll-option-paragraph {
+  margin-top: 15px; }
+  .poll-option-paragraph .checkbox-blue[type="checkbox"].filled-in:checked + label:after {
+    border: 2px solid #1E8BC3 !important;
+    background-color: #1E8BC3 !important; }
+  .poll-option-paragraph label {
+    color: #373D3F; }
+  .poll-option-paragraph .radiobutton-blue[type="radio"]:checked + label::after, .poll-option-paragraph [type="radio"].with-gap:checked + label::after {
+    border: 2px solid #1E8BC3 !important;
+    background-color: #1E8BC3 !important; }
+
+.options-checboxes {
+  margin-top: 20px; }
+  .options-checboxes input:checked + label:before {
+    border-right: 2px solid #1E8BC3 !important;
+    /* You need to change the colour here */
+    border-bottom: 2px solid #1E8BC3 !important;
+    /* And here */ }
+  .options-checboxes label {
+    color: #373D3F; }
+
+.remove-field-div {
+  font-size: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+.results-bar {
+  margin-top: 10px; }
+  .results-bar .results-labels {
+    display: flex;
+    justify-content: space-between; }
+  .results-bar .progress-bar-outer {
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+    height: 20px; }
+    .results-bar .progress-bar-outer .progressbar-container {
+      height: 100%; }
+      .results-bar .progress-bar-outer .progressbar-container .progressbar-progress {
+        height: 100% !important; }
+
+.refresh-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f1f1; }
+  .refresh-button-container button {
+    font-size: 12px; }
+    .refresh-button-container button i {
+      font-size: 12px;
+      margin-left: 5px; }
+
+.tabs-container {
+  margin-top: 20px; }
+  .tabs-container .tabs .tab a {
+    color: #1E8BC3;
+    cursor: pointer; }
+  .tabs-container .tabs .indicator {
+    background-color: #1E8BC3; }
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+  margin-top: 15px; }
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px; } }
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px; } }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px; } }
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
