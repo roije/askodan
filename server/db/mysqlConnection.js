@@ -1,13 +1,13 @@
 var mysql = require('mysql');
+var config = require('./db_config.json')[process.env.NODE_ENV || 'development'];
 var pool  = mysql.createPool({
-  host     : 'localhost',
-  port : '3306',
-  user     : 'root',
-  password : 'root',
-  database : 'askodan'
+  host     : config.DB_HOST,
+  port : config.DB_PORT,
+  user     : config.DB_USER,
+  password : config.DB_PASSWORD,
+  database : config.DB_DATABASE
 });
 
-var config = require('./db_config.json')[process.env.NODE_ENV || 'development'];
 
 module.exports = {
     query: (sqlQuery, values, callback) => {
