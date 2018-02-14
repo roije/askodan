@@ -20,7 +20,7 @@ class PollComponent extends Component {
     }
 
     onClickSaveVote() {
-        if(!this.props.vote && this.props.votes.length == 0) {
+        if(!this.props.vote == 0 && this.props.votes.length == 0) {
             this.props.setVoteError();
         }
         else {
