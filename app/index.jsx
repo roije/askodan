@@ -12,6 +12,14 @@ import PollResultsContainer from './containers/PollResultsContainer.jsx';
 //Styles
 import style from '../public/style.scss';
 
+if (process.env.NODE_ENV !== 'production') {
+    console.log('Looks like we are in development mode!');
+} else {
+    console.log("We're in development")
+}
+
+console.log(__API__);
+
 class App extends Component{
     render(){
         return (

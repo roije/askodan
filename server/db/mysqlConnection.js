@@ -8,6 +8,7 @@ var pool  = mysql.createPool({
   database : config.DB_DATABASE
 });
 
+console.log(config)
 
 module.exports = {
     query: (sqlQuery, values, callback) => {
