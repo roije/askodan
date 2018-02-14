@@ -151,7 +151,7 @@ export const savePoll = (callback) => {
         var pollGeneralConfigs = newPollReducer.pollConfigs.generalVotingConfigs;
         var ipBrowserConfigSelected = newPollReducer.ipBrowserConfigSelected;
         var title = newPollReducer.title;
-        fetch('http://localhost:8000/api/poll', {
+        fetch(__API__ + '/api/poll', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

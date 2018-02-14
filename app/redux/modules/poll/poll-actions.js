@@ -14,6 +14,7 @@ import {
     POLL_CHECK_CLICKED_BETA
 } from './poll-constants';
 
+console.log(__API__)
 ////////////////////////FETCH POLL//////////////////////////
 
 const fetchPollStart = () => {
@@ -58,7 +59,7 @@ export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
         dispatch(fetchPollStart())
-        fetch('http://localhost:8000/poll/' + slug, {
+        fetch(__API__ + '/poll/' + slug, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',
@@ -127,7 +128,7 @@ export const saveVote = (callback) => {
         let voteIndex = pollReducer.vote;
         let pollOption = pollReducer.poll.pollOptions[voteIndex];
         let pollId = pollReducer.poll.id;
-        fetch('http://localhost:8000/api/poll/vote', {
+        fetch(__API__ + '/api/poll/vote', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -174,7 +175,7 @@ export const saveVotes = (callback) => {
             let option = pollReducer.poll.pollOptions[voteIndex];
             votesSave.push(option);
         }
-        fetch('http://localhost:8000/api/poll/votes', {
+        fetch(__API__ + '/api/poll/votes', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
