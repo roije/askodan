@@ -16,7 +16,7 @@ import {
 
 const initialState = {
     poll: {},
-    vote: null,
+    vote: undefined,
     votes: [],
     saving: false,
     pollCheckList: [],
