@@ -22,7 +22,7 @@ app.use(routes);
 app.use(express.static(__dirname + '/../public/'));
 
 app.get('/*', function (req, res) {
-    res.sendfile(__dirname + '/../public/index.html');
+    res.sendFile('index.html', {root: './public'});
 });
 
 app.listen(port, (err) => {
