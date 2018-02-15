@@ -9,7 +9,7 @@
     "express-server": "nodemon ./server/index.js",
     "dev-express-server": "webpack --config webpack.dev.js && nodemon ./server/index.js",
     "prod-express-server": "set NODE_ENV=production&& nodemon ./server/index.js",
-    "build": "set NODE_ENV=production&& webpack --config webpack.prod.js && npm run express-server"
+    "build": "webpack --config webpack.prod.js && set NODE_ENV=production&& npm run express-server"
   },
   "author": "",
   "license": "ISC",
