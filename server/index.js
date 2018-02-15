@@ -5,8 +5,7 @@ var cors = require('cors')
 let path = require('path');
 
 let bodyParser = require('body-parser');
-console.log(process.env.NODE_ENV);
-const port = 8000;
+const port = process.env.NODE_ENV ? 80 : 8000;
 
 app.use(cors());
 app.options('*', cors())
