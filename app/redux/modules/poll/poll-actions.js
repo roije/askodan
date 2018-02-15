@@ -59,7 +59,7 @@ export const fetchPoll = (slug) => {
     return function (dispatch) { 
         //Set all the options to have last as false
         dispatch(fetchPollStart())
-        fetch(__API__ + '/poll/' + slug, {
+        fetch(__API__ + '/api/poll/' + slug, {
             method: 'get',
             headers: {
                 'Accept': 'application/json',

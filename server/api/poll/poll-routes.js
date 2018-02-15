@@ -25,7 +25,7 @@ router.post('/testconnection', (req, res) => {
     });
 })
 
-router.get('/poll/:slug', (req, res) => {
+router.get('/api/poll/:slug', (req, res) => {
     let slug = req.params.slug;
     //QdJqob
     pollController.getPoll(slug, (err, data) => {

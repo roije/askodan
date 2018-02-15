@@ -18,8 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
     console.log("We're in development")
 }
 
-console.log(__API__);
-
 class App extends Component{
     render(){
         return (

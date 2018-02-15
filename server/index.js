@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 let routes = require('./api/combinedRoutes');
 app.use(routes);
 
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/../public/'));
 
 app.get('/', function (req, res) {
     console.log(__dirname)
